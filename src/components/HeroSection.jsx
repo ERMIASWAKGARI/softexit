@@ -56,14 +56,33 @@ export default function HeroSection() {
         <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12">
           {/* Left side - Welcome text */}
           <div className="lg:w-1/2 text-center lg:text-left">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
+            <h1
+              className="font-bold mb-4 sm:mb-6"
+              style={{
+                fontSize: 'clamp(1.6rem, 5vw, 3rem)', // 28px to 56px
+                lineHeight: 1.2,
+              }}
+            >
               Prepare for Your Exit Exam
             </h1>
-            <p className="text-lg sm:text-xl mb-6 md:mb-8 text-[#666] max-w-[600px] mx-auto lg:mx-0">
+
+            <p
+              className="text-[#666] mb-6 md:mb-8 max-w-[500px] mx-auto lg:mx-0"
+              style={{
+                fontSize: 'clamp(1rem, 2.5vw, 1.2rem)', // 16px to 22px
+                lineHeight: 1.6,
+              }}
+            >
               Access model exams from top Ethiopian universities and boost your
-              preparation with our comprehensive resources.
+              preparation with these comprehensive resources.
             </p>
-            <button className="bg-[#B80C09] text-white px-6 py-3 rounded-lg font-semibold hover:-translate-y-1 transition-transform duration-200 text-lg">
+
+            <button
+              className="bg-[#B80C09] text-white px-6 py-3 rounded-lg font-semibold hover:-translate-y-1 transition-transform duration-200"
+              style={{
+                fontSize: 'clamp(1rem, 2.5vw, 1.2rem)', // 16px to 20px
+              }}
+            >
               Start Practicing Now
             </button>
           </div>
