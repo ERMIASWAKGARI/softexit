@@ -31,13 +31,13 @@ const resources = [
 
 export default function Resources() {
   return (
-    <section className="py-12 bg-gray-50 dark:bg-gray-900">
+    <section className="py-12 bg-[#f5f6fa]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
+          <h2 className="text-3xl font-bold text-[#2c3e50] mb-2">
             Study Resources
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300">
+          <p className="text-xl text-[#333]">
             Access a variety of materials to enhance your preparation
           </p>
         </div>
@@ -46,17 +46,15 @@ export default function Resources() {
           {resources.map((resource, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-gray-700 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
             >
               <div className="p-6">
                 <div className="text-4xl mb-4">{resource.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+                <h3 className="text-xl font-semibold text-[#2c3e50] mb-2">
                   {resource.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  {resource.description}
-                </p>
-                <span className="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">
+                <p className="text-[#333] mb-4">{resource.description}</p>
+                <span className="inline-block px-3 py-1 bg-[#f5f6fa] text-[#B80C09] rounded-full text-sm">
                   {resource.count}
                 </span>
               </div>

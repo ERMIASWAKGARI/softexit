@@ -1,13 +1,13 @@
 export default function AboutSection() {
   return (
-    <section className="py-12 bg-white dark:bg-gray-800">
+    <section className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center">
-          <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">
+          <h2 className="text-3xl font-bold text-[#2c3e50] mb-8">
             About Ethiopian Exit Exam Prep
           </h2>
 
-          <div className="max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300 space-y-6">
+          <div className="max-w-3xl mx-auto text-lg text-[#333] space-y-6">
             <p>
               Our platform is dedicated to helping university students in
               Ethiopia prepare for their exit exams through comprehensive

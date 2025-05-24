@@ -1,14 +1,14 @@
 export default function JoinGroup() {
   return (
-    <section className="py-12 bg-white dark:bg-gray-800">
+    <section className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-r from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 rounded-xl p-8 md:p-10 shadow-lg">
+        <div className="bg-gradient-to-r from-[#B80C09] to-[#e74c3c] rounded-xl p-8 md:p-10 shadow-lg">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-2/3 mb-6 md:mb-0 md:pr-8">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
                 Join Our Study Group
               </h2>
-              <p className="text-green-100 mb-6">
+              <p className="text-[#f5f6fa] mb-6">
                 Connect with other students preparing for exit exams. Share
                 resources, ask questions, and get support from peers in our
                 active Telegram community.
@@ -17,7 +17,7 @@ export default function JoinGroup() {
                 href="https://t.me/ethiopian_exit_exam_prep"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 bg-white text-green-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                className="inline-flex items-center px-6 py-3 bg-white text-[#B80C09] rounded-lg font-semibold hover:bg-[#f5f6fa] transition-colors"
               >
                 <svg
                   className="w-5 h-5 mr-2"

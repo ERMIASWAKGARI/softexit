@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export default function Navbar() {
   return (
     <nav
-      className={`bg-white  fixed w-full z-10 transition-colors duration-200 px-8 py-2`}
+      className={`bg-[#B80C09]  fixed w-full z-10 transition-colors duration-200 px-8 py-2`}
     >
       <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
@@ -11,7 +11,7 @@ export default function Navbar() {
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center">
               <span
-                className="font-bold text-[#B80C09] dark:text-wite transition-colors duration-200"
+                className="font-bold text-white transition-colors duration-200"
                 style={{
                   fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)', // 16px to 20px
                 }}
@@ -25,25 +25,25 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               to="/"
-              className={`text-[#333] font-medium hover:text-[#B80C09] px-1 transition-colors duration-200 `}
+              className={`text-white font-medium hover:text-[#B80C09] px-1 transition-colors duration-200 `}
             >
               Home
             </Link>
             <Link
               to="/history"
-              className={`text-[#333] font-medium hover:text-[#B80C09] px-1 transition-colors duration-200 `}
+              className={`text-white font-medium hover:text-[#B80C09] px-1 transition-colors duration-200 `}
             >
               Progress Tracking
             </Link>
             <Link
               to="/study-group"
-              className={`text-[#333] font-medium hover:text-[#B80C09] px-1 transition-colors duration-200 `}
+              className={`text-white font-medium hover:text-[#B80C09] px-1 transition-colors duration-200 `}
             >
               Study Group
             </Link>
             <Link
               to="/about"
-              className={`text-[#333] font-medium hover:text-[#B80C09] px-1 transition-colors duration-200 `}
+              className={`text-white font-medium hover:text-[#B80C09] px-1 transition-colors duration-200 `}
             >
               About
             </Link>
