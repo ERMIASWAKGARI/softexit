@@ -1,26 +1,38 @@
+import { Users } from 'lucide-react'
+
 export default function JoinGroup() {
   return (
-    <section className="py-12 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-r from-[#B80C09] to-[#e74c3c] rounded-xl p-8 md:p-10 shadow-lg">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-2/3 mb-6 md:mb-0 md:pr-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                Join Our Study Group
-              </h2>
-              <p className="text-[#f5f6fa] mb-6">
-                Connect with other students preparing for exit exams. Share
-                resources, ask questions, and get support from peers in our
-                active Telegram community.
-              </p>
+    <section className="py-12 sm:py-16 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-red-50 rounded-2xl p-6 sm:p-10 md:p-12 shadow-xl">
+          <div className="flex flex-col md:flex-row items-center gap-10">
+            {/* Left Section: Icon + Text + Button */}
+            <div className="md:w-2/3 w-full flex flex-col gap-6">
+              {/* Icon + Text */}
+              <div className="flex items-center gap-4">
+                <div className=" p-2 rounded-full flex items-center justify-center">
+                  <Users className="text-[#B80C09] " size={32} />
+                </div>
+                <div>
+                  <h2 className="sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-2">
+                    Join Our Study Group
+                  </h2>
+                  <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
+                    Connect with other students, share resources, and study
+                    together!
+                  </p>
+                </div>
+              </div>
+
+              {/* Full Width Button */}
               <a
-                href="https://t.me/ethiopian_exit_exam_prep"
+                href="https://t.me/ermiwak2"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 bg-white text-[#B80C09] rounded-lg font-semibold hover:bg-[#f5f6fa] transition-colors"
+                className="inline-flex justify-center items-center w-full px-4 sm:px-6 py-3 bg-[#B80C09] hover:-translate-y-1 text-white rounded-lg font-semibold hover:bg-red-700 transition text-sm sm:text-base md:text-lg"
               >
                 <svg
-                  className="w-5 h-5 mr-2"
+                  className="w-4 h-4 sm:w-5 sm:h-5 mr-2"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -29,12 +41,19 @@ export default function JoinGroup() {
                 Join Telegram Group
               </a>
             </div>
-            <div className="md:w-1/3 flex justify-center">
-              <img
-                src="/telegram-group.png"
-                alt="Telegram Group"
-                className="h-40 w-auto object-contain"
-              />
+
+            {/* QR Code Image */}
+            <div className="md:w-1/3 w-full flex justify-center">
+              <div className="text-center">
+                <img
+                  src="./qrcode.png"
+                  alt="Join via QR Code"
+                  className="h-32 w-32 sm:h-36 sm:w-36 md:h-40 md:w-40 object-contain border border-gray-300 p-2 bg-white rounded-lg shadow-sm"
+                />
+                <p className="text-xs sm:text-sm text-gray-500 mt-2">
+                  Scan to join on mobile
+                </p>
+              </div>
             </div>
           </div>
         </div>

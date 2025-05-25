@@ -1,10 +1,9 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import { ExamProvider } from './contexts/ExamContext'
-// import Exam from './pages/Exam'
-// import History from './pages/History'
-// import Results from './pages/Results'
 import Home from './pages/Home'
+import InstantExamPage from './pages/InstantExam'
+import ReviewExamPage from './pages/ReviewExam' // import History from './pages/History'
 
 export default function App() {
   return (
@@ -12,11 +11,11 @@ export default function App() {
       <Router>
         <div>
           <Navbar />
+
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* <Route path="/exam/:examId" element={<Exam />} />
-              <Route path="/results" element={<Results />} />
-              <Route path="/history" element={<History />} /> */}
+            <Route path="/exam/instant/:examId" element={<InstantExamPage />} />
+            <Route path="/exam/review/:examId" element={<ReviewExamPage />} />
           </Routes>
         </div>
       </Router>

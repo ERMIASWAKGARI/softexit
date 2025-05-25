@@ -59,7 +59,7 @@ export default function ExamCard({ exam }) {
 
             <div className="space-y-4 mb-5">
               <Link
-                to={`/exam/${exam.id}`}
+                to={`/exam/instant/${exam.id}`}
                 state={{ mode: 'instant' }}
                 className="flex items-start gap-3 w-full p-4 border border-gray-300 rounded-lg hover:border-red-400 transition cursor-pointer"
               >
@@ -75,7 +75,7 @@ export default function ExamCard({ exam }) {
               </Link>
 
               <Link
-                to={`/exam/${exam.id}`}
+                to={`/exam/review/${exam.id}`}
                 state={{ mode: 'review' }}
                 className="flex items-start gap-3 w-full p-4 border border-gray-300 rounded-lg hover:border-red-400 transition cursor-pointer"
               >

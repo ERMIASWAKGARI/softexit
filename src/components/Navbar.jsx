@@ -25,25 +25,25 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               to="/"
-              className={`text-white font-medium hover:text-[#B80C09] px-1 transition-colors duration-200 `}
+              className={`text-white font-medium px-1 transition-colors duration-200 `}
             >
               Home
             </Link>
             <Link
               to="/history"
-              className={`text-white font-medium hover:text-[#B80C09] px-1 transition-colors duration-200 `}
+              className={`text-white font-medium px-1 transition-colors duration-200 `}
             >
               Progress Tracking
             </Link>
             <Link
               to="/study-group"
-              className={`text-white font-medium hover:text-[#B80C09] px-1 transition-colors duration-200 `}
+              className={`text-white font-medium px-1 transition-colors duration-200 `}
             >
               Study Group
             </Link>
             <Link
               to="/about"
-              className={`text-white font-medium hover:text-[#B80C09] px-1 transition-colors duration-200 `}
+              className={`text-white font-medium px-1 transition-colors duration-200 `}
             >
               About
             </Link>

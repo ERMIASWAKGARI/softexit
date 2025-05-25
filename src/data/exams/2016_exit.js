@@ -19,6 +19,27 @@ const exitExam2016 = {
       correctAnswerIndex: 1,
       explanation: 'i will add more exam and resource soon in next release',
     },
+    {
+      id: '3',
+      text: 'coming soon, i will add more exam and resource soon in next release?',
+      options: ['a', 'b', 'c', 'd'],
+      correctAnswerIndex: 1,
+      explanation: 'i will add more exam and resource soon in next release',
+    },
+    {
+      id: '4',
+      text: 'coming soon, i will add more exam and resource soon in next release?',
+      options: ['a', 'b', 'c', 'd'],
+      correctAnswerIndex: 1,
+      explanation: 'i will add more exam and resource soon in next release',
+    },
+    {
+      id: '5',
+      text: 'coming soon, i will add more exam and resource soon in next release?',
+      options: ['a', 'b', 'c', 'd'],
+      correctAnswerIndex: 1,
+      explanation: 'i will add more exam and resource soon in next release',
+    },
   ],
 }
 export default exitExam2016

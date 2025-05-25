@@ -44,7 +44,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="text-[#2c3e50] py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-red-50"
+      className="text-[#2c3e50] bg-white py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 lg:px-8"
       style={{
         // background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
         minHeight: isMobile ? 'auto' : 'calc(100vh - 80px)',
