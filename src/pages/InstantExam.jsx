@@ -20,6 +20,7 @@ export default function InstantExam() {
 
   const currentQuestion = exam?.questions[currentQuestionIndex]
   const isLastQuestion = currentQuestionIndex === exam?.questions.length - 1
+  const answeredCount = Object.keys(userAnswers).length
 
   const handleAnswerSelect = (answerIndex) => {
     if (examCompleted) return
@@ -128,8 +129,13 @@ export default function InstantExam() {
         <h1 className="text-xl font-bold text-[#2c3e50]">
           {exam.title} - Instant Feedback
         </h1>
-        <div className="text-sm font-medium">
-          Question {currentQuestionIndex + 1} of {exam.questions.length}
+        <div className="flex items-center gap-4">
+          <span className="text-sm">
+            Question {currentQuestionIndex + 1} of {exam.questions.length}
+          </span>
+          <span className="text-sm bg-gray-200 px-2 py-1 rounded">
+            Answered: {answeredCount}/{exam.questions.length}
+          </span>
         </div>
       </div>
 

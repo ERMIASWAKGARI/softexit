@@ -13,6 +13,7 @@ export default function ReviewExam() {
   const [examCompleted, setExamCompleted] = useState(false)
   const questionRef = useRef(null)
 
+  // Scroll to question when it changes
   useEffect(() => {
     questionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }, [currentQuestionIndex])
@@ -24,11 +25,10 @@ export default function ReviewExam() {
   const handleAnswerSelect = (answerIndex) => {
     if (examCompleted) return
 
-    const newAnswers = {
-      ...userAnswers,
+    setUserAnswers((prev) => ({
+      ...prev,
       [currentQuestion.id]: answerIndex,
-    }
-    setUserAnswers(newAnswers)
+    }))
   }
 
   const handleNextQuestion = () => {
@@ -46,165 +46,246 @@ export default function ReviewExam() {
   }
 
   const calculateScore = () => {
-    const correct = exam.questions.reduce((score, question) => {
+    const correctAnswers = exam.questions.reduce((count, question) => {
       return userAnswers[question.id] === question.correctAnswerIndex
-        ? score + 1
-        : score
+        ? count + 1
+        : count
     }, 0)
+
     return {
-      count: correct,
-      percentage: Math.round((correct / exam.questions.length) * 100),
+      correct: correctAnswers,
+      total: exam.questions.length,
+      percentage: Math.round((correctAnswers / exam.questions.length) * 100),
     }
+  }
+
+  const resetExam = () => {
+    setCurrentQuestionIndex(0)
+    setUserAnswers({})
+    setExamCompleted(false)
   }
 
   if (!exam) return <div className="p-4 text-center">Exam not found</div>
 
+  // Results View - Shows after exam completion
   if (examCompleted) {
     const score = calculateScore()
+
     return (
-      <div className="max-w-4xl mx-auto p-4">
-        <h1 className="text-2xl font-bold text-[#2c3e50] mb-6">
-          Exam Results: {exam.title}
-        </h1>
-        <div className="mb-6 bg-white rounded-lg shadow p-6">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold">Your Score</h2>
-            <span className="text-2xl font-bold">
-              {score.count} / {exam.questions.length} ({score.percentage}%)
-            </span>
+      <div className="max-w-4xl mx-auto px-4 py-24">
+        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+          <div className="flex justify-between items-center mb-6">
+            <h1 className="text-2xl font-bold text-[#2c3e50]">
+              Exam Results: {exam.title}
+            </h1>
+            <div className="text-xl font-semibold bg-blue-50 px-4 py-2 rounded-lg">
+              Score: {score.correct}/{score.total} ({score.percentage}%)
+            </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
-            {exam.questions.map((q, idx) => {
-              const isCorrect = userAnswers[q.id] === q.correctAnswerIndex
-              return (
-                <button
-                  key={q.id}
-                  onClick={() => setCurrentQuestionIndex(idx)}
-                  className={`p-2 rounded-md text-center ${
-                    isCorrect
-                      ? 'bg-green-100 text-green-800 hover:bg-green-200'
-                      : 'bg-red-100 text-red-800 hover:bg-red-200'
-                  }`}
-                >
-                  Q{idx + 1}
-                </button>
-              )
-            })}
+
+          {/* Question Navigation Grid */}
+          <div className="mb-8">
+            <h2 className="text-lg font-semibold mb-4">Question Overview</h2>
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
+              {exam.questions.map((q, idx) => {
+                const isCorrect = userAnswers[q.id] === q.correctAnswerIndex
+                return (
+                  <button
+                    key={q.id}
+                    onClick={() => setCurrentQuestionIndex(idx)}
+                    className={`p-3 rounded-md text-center font-medium ${
+                      isCorrect
+                        ? 'bg-green-100 text-green-800 hover:bg-green-200'
+                        : 'bg-red-100 text-red-800 hover:bg-red-200'
+                    }`}
+                  >
+                    Q{idx + 1}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Current Question Review */}
+          <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+            <h3 className="text-lg font-semibold mb-4">
+              Q{currentQuestionIndex + 1}: {currentQuestion.text}
+            </h3>
+
+            <div className="space-y-3">
+              {currentQuestion.options.map((option, index) => {
+                const isSelected = userAnswers[currentQuestion.id] === index
+                const isCorrect = index === currentQuestion.correctAnswerIndex
+                const optionLetters = ['A', 'B', 'C', 'D']
+
+                let optionClasses = 'p-3 border rounded-lg flex items-start'
+
+                if (isCorrect) {
+                  optionClasses += ' bg-green-50 border-green-300'
+                }
+                if (isSelected) {
+                  optionClasses += isCorrect
+                    ? ' bg-green-100 border-green-500'
+                    : ' bg-red-100 border-red-500'
+                }
+
+                return (
+                  <div key={index} className={optionClasses}>
+                    <span className="font-medium mr-2">
+                      {optionLetters[index]}.
+                    </span>
+                    <span>{option}</span>
+                    {isSelected && isCorrect && (
+                      <CheckCircle2 className="ml-2 text-green-500" size={18} />
+                    )}
+                    {isSelected && !isCorrect && (
+                      <XCircle className="ml-2 text-red-500" size={18} />
+                    )}
+                    {isCorrect && !isSelected && (
+                      <span className="ml-2 text-sm text-green-600">
+                        (Correct Answer)
+                      </span>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+
+            {currentQuestion.explanation && (
+              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <p className="font-medium text-blue-800">Explanation:</p>
+                <p className="text-blue-700">{currentQuestion.explanation}</p>
+              </div>
+            )}
           </div>
         </div>
-        <div className="flex gap-4">
-          <button
-            onClick={() => navigate('/')}
-            className="px-4 py-2 bg-[#B80C09] text-white rounded-md hover:bg-[#e74c3c]"
-          >
-            Back to Exams
-          </button>
-          <button
-            onClick={() => {
-              setCurrentQuestionIndex(0)
-              setUserAnswers({})
-              setExamCompleted(false)
-            }}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-          >
-            Retake Exam
-          </button>
+
+        {/* Navigation Controls */}
+        <div className="flex flex-col sm:flex-row justify-between gap-4 mt-6">
+          <div className="flex gap-3">
+            <button
+              onClick={handlePreviousQuestion}
+              disabled={currentQuestionIndex === 0}
+              className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md disabled:opacity-50"
+            >
+              Previous Question
+            </button>
+            <button
+              onClick={handleNextQuestion}
+              disabled={currentQuestionIndex === exam.questions.length - 1}
+              className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md disabled:opacity-50"
+            >
+              Next Question
+            </button>
+          </div>
+
+          <div className="flex gap-3">
+            <button
+              onClick={() => navigate('/')}
+              className="px-4 py-2 bg-[#B80C09] text-white rounded-md hover:bg-[#e74c3c]"
+            >
+              Back to Exams
+            </button>
+            <button
+              onClick={resetExam}
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            >
+              Retake Exam
+            </button>
+          </div>
         </div>
       </div>
     )
   }
 
+  // Exam Taking View
   return (
-    <div className="max-w-4xl mx-auto p-4" ref={questionRef}>
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-xl font-bold text-[#2c3e50]">
-          {exam.title} - Review Mode
-        </h1>
-        <div className="flex items-center gap-4">
-          <span className="text-sm">
-            Question {currentQuestionIndex + 1} of {exam.questions.length}
-          </span>
-          <span className="text-sm bg-gray-200 px-2 py-1 rounded">
-            Answered: {answeredCount}/{exam.questions.length}
-          </span>
+    <div className="max-w-4xl mx-auto px-4 py-24" ref={questionRef}>
+      <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+        {/* Header with progress */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+          <h1 className="text-xl font-bold text-[#2c3e50]">
+            {exam.title} - Review Mode
+          </h1>
+
+          <div className="flex items-center gap-4">
+            <span className="text-sm bg-gray-100 px-3 py-1 rounded">
+              Question {currentQuestionIndex + 1} of {exam.questions.length}
+            </span>
+            <span className="text-sm bg-blue-100 px-3 py-1 rounded">
+              Answered: {answeredCount}/{exam.questions.length}
+            </span>
+          </div>
+        </div>
+
+        {/* Progress bar */}
+        <div className="mb-6">
+          <div className="flex justify-between text-sm text-gray-600 mb-1">
+            <span>Progress</span>
+            <span>
+              {Math.round((answeredCount / exam.questions.length) * 100)}%
+            </span>
+          </div>
+          <div className="bg-gray-200 rounded-full h-2.5">
+            <div
+              className="bg-[#B80C09] h-2.5 rounded-full"
+              style={{
+                width: `${(answeredCount / exam.questions.length) * 100}%`,
+              }}
+            ></div>
+          </div>
+        </div>
+
+        {/* Current Question */}
+        <div className="mb-6">
+          <h2 className="text-lg font-semibold mb-4">
+            Q{currentQuestionIndex + 1}: {currentQuestion.text}
+          </h2>
+
+          <div className="space-y-3">
+            {currentQuestion.options.map((option, index) => {
+              const isSelected = userAnswers[currentQuestion.id] === index
+              const optionLetters = ['A', 'B', 'C', 'D']
+
+              return (
+                <div
+                  key={index}
+                  onClick={() => handleAnswerSelect(index)}
+                  className={`p-3 border rounded-lg flex items-start cursor-pointer ${
+                    isSelected
+                      ? 'bg-blue-100 border-blue-500'
+                      : 'border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
+                  <span className="font-medium mr-2">
+                    {optionLetters[index]}.
+                  </span>
+                  <span>{option}</span>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
 
-      <div className="mb-4">
-        <div className="text-sm text-gray-700 mb-1">
-          Progress: {Math.round((answeredCount / exam.questions.length) * 100)}%
-        </div>
-        <div className="bg-gray-200 rounded-full h-2">
-          <div
-            className="bg-[#B80C09] h-2 rounded-full"
-            style={{
-              width: `${(answeredCount / exam.questions.length) * 100}%`,
-            }}
-          ></div>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <h2 className="text-lg font-semibold mb-4">
-          Q{currentQuestionIndex + 1}: {currentQuestion.text}
-        </h2>
-
-        <div className="space-y-3">
-          {currentQuestion.options.map((option, index) => {
-            const isSelected = userAnswers[currentQuestion.id] === index
-            const isCorrect = index === currentQuestion.correctAnswerIndex
-            const optionLetters = ['A', 'B', 'C', 'D']
-
-            let optionClasses = 'p-3 border rounded-lg flex items-start'
-
-            if (isSelected) {
-              optionClasses += isCorrect
-                ? ' bg-green-100 border-green-500'
-                : ' bg-red-100 border-red-500'
-            } else {
-              optionClasses += ' border-gray-300 hover:bg-gray-50'
-            }
-
-            return (
-              <div
-                key={index}
-                className={optionClasses}
-                onClick={() => !examCompleted && handleAnswerSelect(index)}
-              >
-                <span className="font-medium mr-2">
-                  {optionLetters[index]}.
-                </span>
-                <span>{option}</span>
-                {isSelected && isCorrect && (
-                  <CheckCircle2
-                    className="ml-2 text-green-500 flex-shrink-0"
-                    size={18}
-                  />
-                )}
-                {isSelected && !isCorrect && (
-                  <XCircle
-                    className="ml-2 text-red-500 flex-shrink-0"
-                    size={18}
-                  />
-                )}
-              </div>
-            )
-          })}
-        </div>
-      </div>
-
-      <div className="flex justify-between">
+      {/* Navigation Buttons */}
+      <div className="flex flex-col sm:flex-row justify-between gap-4">
         <button
           onClick={handlePreviousQuestion}
           disabled={currentQuestionIndex === 0}
           className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md disabled:opacity-50"
         >
-          Previous
+          Previous Question
         </button>
+
         <button
           onClick={handleNextQuestion}
           disabled={userAnswers[currentQuestion.id] === undefined}
-          className="px-4 py-2 bg-[#B80C09] text-white rounded-md hover:bg-[#e74c3c] disabled:opacity-50"
+          className={`px-4 py-2 rounded-md ${
+            isLastQuestion
+              ? 'bg-[#B80C09] hover:bg-[#e74c3c] text-white'
+              : 'bg-blue-600 hover:bg-blue-700 text-white'
+          } disabled:opacity-50`}
         >
           {isLastQuestion ? 'Submit Exam' : 'Next Question'}
         </button>
