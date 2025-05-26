@@ -4,7 +4,7 @@ import ExamCard from './ExamCard'
 
 export default function ExamsSection() {
   const [showAll, setShowAll] = useState(false)
-  const displayedExams = showAll ? allExams : allExams.slice(0, 6)
+  const displayedExams = showAll ? allExams : allExams.slice(0, 5)
 
   return (
     <section id="exam-section" className="py-10 sm:py-12 bg-white">
@@ -18,13 +18,13 @@ export default function ExamsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6 mb-6 sm:mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 sm:gap-6 mb-6 sm:mb-8">
           {displayedExams.map((exam) => (
             <ExamCard key={exam.id} exam={exam} />
           ))}
         </div>
 
-        {allExams.length > 6 && (
+        {allExams.length > 5 && (
           <div className="text-center">
             <button
               onClick={() => setShowAll(!showAll)}
