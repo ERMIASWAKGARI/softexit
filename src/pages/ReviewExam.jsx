@@ -74,70 +74,161 @@ export default function ReviewExam() {
     }
   }
 
-  const resetExam = () => {
-    setCurrentQuestionIndex(0)
+  // Add this inside your component
+
+  const handleRetakeExam = () => {
     setUserAnswers({})
+    setCurrentQuestionIndex(0)
     setExamCompleted(false)
     setIsReviewOpen(false)
-  }
-
-  const openQuestionReview = (index) => {
-    setCurrentQuestionIndex(index)
-    setIsReviewOpen(true)
   }
 
   if (!exam) return <div className="p-4 text-center">Exam not found</div>
 
   // Results View - Shows after exam completion
+  // Results View - Shows after exam completion
   if (examCompleted) {
     const score = calculateScore()
+    const passed = score.percentage >= 50
 
     return (
-      <div className="max-w-4xl mx-auto px-4 py-24">
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-          <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold text-[#2c3e50]">
-              Exam Results: {exam.title}
+      <div className="max-w-3xl mx-auto px-4 py-24">
+        {/* Summary Card */}
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
+          <div
+            className={`h-2 ${passed ? 'bg-green-500' : 'bg-red-500'}`}
+          ></div>
+
+          <div className="p-8 text-center">
+            {/* Circular progress indicator */}
+            <div className="relative inline-flex items-center justify-center mb-6">
+              <svg className="w-32 h-32">
+                <circle
+                  className="text-gray-200"
+                  strokeWidth="8"
+                  stroke="currentColor"
+                  fill="transparent"
+                  r="56"
+                  cx="64"
+                  cy="64"
+                />
+                <circle
+                  className={`${passed ? 'text-green-500' : 'text-red-500'}`}
+                  strokeWidth="8"
+                  strokeDasharray={`${score.percentage * 3.14}, 314`}
+                  strokeLinecap="round"
+                  stroke="currentColor"
+                  fill="transparent"
+                  r="56"
+                  cx="64"
+                  cy="64"
+                />
+              </svg>
+              <div className="absolute text-3xl font-bold">
+                {score.percentage}%
+              </div>
+            </div>
+
+            {/* Result title */}
+            <h1
+              className={`text-3xl font-bold mb-2 ${
+                passed ? 'text-green-600' : 'text-red-600'
+              }`}
+            >
+              {passed ? 'Congratulations!' : 'Keep Practicing!'}
             </h1>
-            <div className="text-xl font-semibold bg-blue-50 px-4 py-2 rounded-lg">
-              Score: {score.correct}/{score.total} ({score.percentage}%)
-            </div>
-          </div>
 
-          {/* Question Navigation Grid */}
-          <div className="mb-8">
-            <h2 className="text-lg font-semibold mb-4">Question Overview</h2>
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
-              {exam.questions.map((q, idx) => {
-                const isCorrect = userAnswers[q.id] === q.correctAnswerIndex
-                return (
-                  <button
-                    key={q.id}
-                    onClick={() => openQuestionReview(idx)}
-                    className={`p-3 rounded-md text-center font-medium ${
-                      isCorrect
-                        ? 'bg-green-100 text-green-800 hover:bg-green-200'
-                        : 'bg-red-100 text-red-800 hover:bg-red-200'
-                    }`}
-                  >
-                    Q{idx + 1}
-                  </button>
-                )
-              })}
-            </div>
-          </div>
+            <p className="text-gray-600 mb-6">
+              {passed
+                ? 'You have successfully passed the exam.'
+                : 'Review your answers to improve next time.'}
+            </p>
 
-          {/* Current Question Review - Only shown when isReviewOpen is true */}
-          {isReviewOpen && (
-            <div className="bg-gray-50 rounded-lg p-6 border border-gray-200 relative">
+            {/* Score breakdown */}
+            <div className="bg-gray-50 rounded-lg p-6 mb-8">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-gray-800">
+                    {score.correct}
+                  </div>
+                  <div className="text-sm text-gray-500">Correct Answers</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-gray-800">
+                    {score.total - score.correct}
+                  </div>
+                  <div className="text-sm text-gray-500">Incorrect Answers</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Action buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => setIsReviewOpen(false)}
-                className="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-200"
-                aria-label="Close review"
+                onClick={() => navigate('/')}
+                className="flex-1 px-6 py-3 border border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors"
               >
-                <X size={18} />
+                Back to Home
+              </button>
+              <button
+                onClick={() => setIsReviewOpen(true)}
+                className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+              >
+                Review Answers
               </button>
 
+              {!passed && (
+                <button
+                  onClick={handleRetakeExam}
+                  className="flex-1 px-6 py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors"
+                >
+                  Retake Exam
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Question Review Section - Only shown when isReviewOpen is true */}
+        {isReviewOpen && (
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h1 className="text-2xl font-bold text-[#2c3e50]">
+                Exam Review: {exam.title}
+              </h1>
+              <button
+                onClick={() => setIsReviewOpen(false)}
+                className="p-2 rounded-full hover:bg-gray-100"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Question Navigation Grid */}
+            <div className="mb-8">
+              <h2 className="text-lg font-semibold mb-4">Question Overview</h2>
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
+                {exam.questions.map((q, idx) => {
+                  const isCorrect = userAnswers[q.id] === q.correctAnswerIndex
+                  return (
+                    <button
+                      key={q.id}
+                      onClick={() => setCurrentQuestionIndex(idx)}
+                      className={`p-3 rounded-md text-center font-medium ${
+                        isCorrect
+                          ? 'bg-green-100 text-green-800 hover:bg-green-200'
+                          : 'bg-red-100 text-red-800 hover:bg-red-200'
+                      }`}
+                    >
+                      Q{idx + 1}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Current Question Review */}
+            <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
               <h3 className="text-lg font-semibold mb-4">
                 Q{currentQuestionIndex + 1}: {currentQuestion.text}
               </h3>
@@ -191,49 +282,26 @@ export default function ReviewExam() {
                 </div>
               )}
             </div>
-          )}
-        </div>
 
-        {/* Navigation Controls */}
-        <div className="flex flex-col sm:flex-row justify-between gap-4 mt-6">
-          <div className="flex gap-3">
-            <button
-              onClick={() => {
-                setIsReviewOpen(true)
-                handlePreviousQuestion()
-              }}
-              disabled={currentQuestionIndex === 0}
-              className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md disabled:opacity-50"
-            >
-              Previous Question
-            </button>
-            <button
-              onClick={() => {
-                setIsReviewOpen(true)
-                handleNextQuestion()
-              }}
-              disabled={currentQuestionIndex === exam.questions.length - 1}
-              className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md disabled:opacity-50"
-            >
-              Next Question
-            </button>
+            {/* Navigation Controls */}
+            <div className="flex justify-between gap-4 mt-6">
+              <button
+                onClick={() => handlePreviousQuestion()}
+                disabled={currentQuestionIndex === 0}
+                className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md disabled:opacity-50"
+              >
+                Previous Question
+              </button>
+              <button
+                onClick={() => handleNextQuestion()}
+                disabled={currentQuestionIndex === exam.questions.length - 1}
+                className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md disabled:opacity-50"
+              >
+                Next Question
+              </button>
+            </div>
           </div>
-
-          <div className="flex gap-3">
-            <button
-              onClick={() => navigate('/')}
-              className="px-4 py-2 bg-[#B80C09] text-white rounded-md hover:bg-[#e74c3c]"
-            >
-              Back to Exams
-            </button>
-            <button
-              onClick={resetExam}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-            >
-              Retake Exam
-            </button>
-          </div>
-        </div>
+        )}
       </div>
     )
   }
@@ -252,9 +320,9 @@ export default function ReviewExam() {
             <span className="text-sm bg-gray-100 px-3 py-1 rounded">
               Question {currentQuestionIndex + 1} of {exam.questions.length}
             </span>
-            <span className="text-sm bg-blue-100 px-3 py-1 rounded">
+            {/* <span className="text-sm bg-blue-100 px-3 py-1 rounded">
               Answered: {answeredCount}/{exam.questions.length}
-            </span>
+            </span> */}
           </div>
         </div>
 
@@ -321,11 +389,7 @@ export default function ReviewExam() {
         <button
           onClick={handleNextQuestion}
           disabled={userAnswers[currentQuestion.id] === undefined}
-          className={`px-4 py-2 rounded-md ${
-            isLastQuestion
-              ? 'bg-[#B80C09] hover:bg-[#e74c3c] text-white'
-              : 'bg-blue-600 hover:bg-blue-700 text-white'
-          } disabled:opacity-50`}
+          className={`px-4 py-2 rounded-md bg-[#B80C09] hover:bg-[#e74c3c] text-white disabled:opacity-50`}
         >
           {isLastQuestion ? 'Submit Exam' : 'Next Question'}
         </button>
