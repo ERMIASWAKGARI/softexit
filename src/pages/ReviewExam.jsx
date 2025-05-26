@@ -1,4 +1,4 @@
-import { CheckCircle2, XCircle } from 'lucide-react'
+import { CheckCircle2, X, XCircle } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import allExams from '../data/examIndex'
@@ -11,6 +11,7 @@ export default function ReviewExam() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [userAnswers, setUserAnswers] = useState({})
   const [examCompleted, setExamCompleted] = useState(false)
+  const [isReviewOpen, setIsReviewOpen] = useState(false) // New state for review visibility
   const questionRef = useRef(null)
 
   // Scroll to question when it changes
@@ -34,6 +35,7 @@ export default function ReviewExam() {
   const handleNextQuestion = () => {
     if (isLastQuestion) {
       setExamCompleted(true)
+      setIsReviewOpen(false) // Close review when submitting
     } else {
       setCurrentQuestionIndex((prev) => prev + 1)
     }
@@ -63,6 +65,12 @@ export default function ReviewExam() {
     setCurrentQuestionIndex(0)
     setUserAnswers({})
     setExamCompleted(false)
+    setIsReviewOpen(false)
+  }
+
+  const openQuestionReview = (index) => {
+    setCurrentQuestionIndex(index)
+    setIsReviewOpen(true)
   }
 
   if (!exam) return <div className="p-4 text-center">Exam not found</div>
@@ -92,7 +100,7 @@ export default function ReviewExam() {
                 return (
                   <button
                     key={q.id}
-                    onClick={() => setCurrentQuestionIndex(idx)}
+                    onClick={() => openQuestionReview(idx)}
                     className={`p-3 rounded-md text-center font-medium ${
                       isCorrect
                         ? 'bg-green-100 text-green-800 hover:bg-green-200'
@@ -106,72 +114,91 @@ export default function ReviewExam() {
             </div>
           </div>
 
-          {/* Current Question Review */}
-          <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-            <h3 className="text-lg font-semibold mb-4">
-              Q{currentQuestionIndex + 1}: {currentQuestion.text}
-            </h3>
+          {/* Current Question Review - Only shown when isReviewOpen is true */}
+          {isReviewOpen && (
+            <div className="bg-gray-50 rounded-lg p-6 border border-gray-200 relative">
+              <button
+                onClick={() => setIsReviewOpen(false)}
+                className="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-200"
+                aria-label="Close review"
+              >
+                <X size={18} />
+              </button>
 
-            <div className="space-y-3">
-              {currentQuestion.options.map((option, index) => {
-                const isSelected = userAnswers[currentQuestion.id] === index
-                const isCorrect = index === currentQuestion.correctAnswerIndex
-                const optionLetters = ['A', 'B', 'C', 'D']
+              <h3 className="text-lg font-semibold mb-4">
+                Q{currentQuestionIndex + 1}: {currentQuestion.text}
+              </h3>
 
-                let optionClasses = 'p-3 border rounded-lg flex items-start'
+              <div className="space-y-3">
+                {currentQuestion.options.map((option, index) => {
+                  const isSelected = userAnswers[currentQuestion.id] === index
+                  const isCorrect = index === currentQuestion.correctAnswerIndex
+                  const optionLetters = ['A', 'B', 'C', 'D']
 
-                if (isCorrect) {
-                  optionClasses += ' bg-green-50 border-green-300'
-                }
-                if (isSelected) {
-                  optionClasses += isCorrect
-                    ? ' bg-green-100 border-green-500'
-                    : ' bg-red-100 border-red-500'
-                }
+                  let optionClasses = 'p-3 border rounded-lg flex items-start'
 
-                return (
-                  <div key={index} className={optionClasses}>
-                    <span className="font-medium mr-2">
-                      {optionLetters[index]}.
-                    </span>
-                    <span>{option}</span>
-                    {isSelected && isCorrect && (
-                      <CheckCircle2 className="ml-2 text-green-500" size={18} />
-                    )}
-                    {isSelected && !isCorrect && (
-                      <XCircle className="ml-2 text-red-500" size={18} />
-                    )}
-                    {isCorrect && !isSelected && (
-                      <span className="ml-2 text-sm text-green-600">
-                        (Correct Answer)
+                  if (isCorrect) {
+                    optionClasses += ' bg-green-50 border-green-300'
+                  }
+                  if (isSelected) {
+                    optionClasses += isCorrect
+                      ? ' bg-green-100 border-green-500'
+                      : ' bg-red-100 border-red-500'
+                  }
+
+                  return (
+                    <div key={index} className={optionClasses}>
+                      <span className="font-medium mr-2">
+                        {optionLetters[index]}.
                       </span>
-                    )}
-                  </div>
-                )
-              })}
-            </div>
-
-            {currentQuestion.explanation && (
-              <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                <p className="font-medium text-blue-800">Explanation:</p>
-                <p className="text-blue-700">{currentQuestion.explanation}</p>
+                      <span>{option}</span>
+                      {isSelected && isCorrect && (
+                        <CheckCircle2
+                          className="ml-2 text-green-500"
+                          size={18}
+                        />
+                      )}
+                      {isSelected && !isCorrect && (
+                        <XCircle className="ml-2 text-red-500" size={18} />
+                      )}
+                      {isCorrect && !isSelected && (
+                        <span className="ml-2 text-sm text-green-600">
+                          (Correct Answer)
+                        </span>
+                      )}
+                    </div>
+                  )
+                })}
               </div>
-            )}
-          </div>
+
+              {currentQuestion.explanation && (
+                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                  <p className="font-medium text-blue-800">Explanation:</p>
+                  <p className="text-blue-700">{currentQuestion.explanation}</p>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Navigation Controls */}
         <div className="flex flex-col sm:flex-row justify-between gap-4 mt-6">
           <div className="flex gap-3">
             <button
-              onClick={handlePreviousQuestion}
+              onClick={() => {
+                setIsReviewOpen(true)
+                handlePreviousQuestion()
+              }}
               disabled={currentQuestionIndex === 0}
               className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md disabled:opacity-50"
             >
               Previous Question
             </button>
             <button
-              onClick={handleNextQuestion}
+              onClick={() => {
+                setIsReviewOpen(true)
+                handleNextQuestion()
+              }}
               disabled={currentQuestionIndex === exam.questions.length - 1}
               className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md disabled:opacity-50"
             >
