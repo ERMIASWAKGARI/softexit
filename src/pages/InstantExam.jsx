@@ -231,9 +231,7 @@ export default function InstantExam() {
       </div>
 
       <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <h2 className="text-lg font-semibold mb-4">
-          Q{currentQuestionIndex + 1}: {currentQuestion.text}
-        </h2>
+        <h2 className="text-lg font-semibold mb-4">{currentQuestion.text}</h2>
 
         <div className="space-y-3">
           {currentQuestion.options.map((option, index) => {

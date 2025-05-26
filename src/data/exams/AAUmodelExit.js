@@ -518,6 +518,657 @@ const AAUmodelExit = {
       explanation:
         'Mesh networks have complex interconnections, making fault isolation challenging.',
     },
+    {
+      id: '44',
+      text: 'Which of the following is not a contribution of big data analysis?',
+      options: [
+        'a. To gain competitive advantage',
+        'b. To control the volatile market',
+        'c. To satisfy customers’ needs',
+        'd. None',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Big data contributes to all listed areas (competitive edge, market control, customer satisfaction).',
+    },
+    {
+      id: '45',
+      text: 'What does the HTTP status code 201 indicate?',
+      options: ['a. No content', 'b. Accepted', 'c. OK', 'd. Created'],
+      correctAnswerIndex: 3,
+      explanation:
+        'HTTP 201 means a resource was successfully created (e.g., after a POST request).',
+    },
+    {
+      id: '46',
+      text: 'Which of the following are famous and common cyber-attacks?',
+      options: [
+        'a. DDoS and Drive-by Downloads',
+        'b. Malware & Malvertising',
+        'c. Phishing and Password attacks',
+        'd. All of the above',
+      ],
+      correctAnswerIndex: 3,
+      explanation: 'All options are prevalent cyber-attack methods.',
+    },
+    {
+      id: '47',
+      text: 'Identify possible source(s) of unstructured data:',
+      options: [
+        'a. RDBMSs',
+        'b. Addis Ababa University students database',
+        'c. Twitter',
+        'd. Microsoft employee table',
+      ],
+      correctAnswerIndex: 2,
+      explanation:
+        'Twitter feeds (text, images) are unstructured, unlike tabular RDBMS data.',
+    },
+    {
+      id: '48',
+      text: 'What is the time complexity of the following C++ code?\n\nvoid solve() {\n  int a[] = {1, 2, 3, 4, 5};\n  int sum = 0;\n  for(int i = 0; i < 5; i++) {\n    if(i % 2 == 0) sum += a[i];\n  }\n  cout << sum << endl;\n}',
+      options: ['a. O(logn)', 'b. O(1)', 'c. O(n)', 'd. O(n²)'],
+      correctAnswerIndex: 2,
+      explanation:
+        'The loop runs 5 times (O(n)), performing constant-time operations per iteration.',
+    },
+    {
+      id: '49',
+      text: 'Which one of the following is true of a class with package scope?',
+      options: [
+        'a. It contains abstract methods only',
+        'b. It is a source file, not a class file',
+        'c. Only it can be imported from the package',
+        'd. It is visible only to other classes in the same package',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Package-private (default) scope restricts visibility to classes within the same package.',
+    },
+    {
+      id: '50',
+      text: 'What type of CSS is generally recommended for designing large web pages?',
+      options: ['a. Embedded', 'b. External', 'c. Inline', 'd. Internal'],
+      correctAnswerIndex: 1,
+      explanation:
+        'External CSS separates styling from content, improving maintainability for large projects.',
+    },
+    {
+      id: '51',
+      text: 'What is the time complexity of the following code snippet in C++?\n\nvoid solve() {\n  string s = "scaler";\n  int n = s.size();\n  for(int i = 0; i < n; i++) {\n    s = s + s[i];\n  }\n  cout << s << endl;\n}',
+      options: ['a. O(logn)', 'b. O(1)', 'c. O(n)', 'd. O(n^2)'],
+      correctAnswerIndex: 3,
+      explanation:
+        'The loop runs `n` times, and string concatenation is O(n), resulting in O(n²) total complexity.',
+    },
+    {
+      id: '52',
+      text: 'The process to gather the software requirements from client, analyze, and document is known as:',
+      options: [
+        'a. User engineering process',
+        'b. Requirement engineering process',
+        'c. Requirement elicitation process',
+        'd. Software engineering process',
+      ],
+      correctAnswerIndex: 1,
+      explanation:
+        'Requirement engineering encompasses elicitation, analysis, and documentation of requirements.',
+    },
+    {
+      id: '53',
+      text: 'Which one of the following refers to the technique used for verifying the integrity of the message?',
+      options: [
+        'a. Protocol',
+        'b. Digital signature',
+        'c. Decryption algorithm',
+        'd. Message digest',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Message digests (e.g., SHA-256) verify data integrity by generating a unique hash.',
+    },
+    {
+      id: '54',
+      text: 'What is the time complexity of the binary search algorithm?',
+      options: ['a. O(n)', 'b. O(1)', 'c. O(n²)', 'd. O(log2n)'],
+      correctAnswerIndex: 3,
+      explanation:
+        'Binary search halves the search space each iteration, achieving O(log n) time.',
+    },
+    {
+      id: '55',
+      text: 'Which of the following is not an activity lifecycle callback method?',
+      options: [
+        'a. onStart()',
+        'b. onClick()',
+        'c. onCreate()',
+        'd. onBackPressed()',
+      ],
+      correctAnswerIndex: 1,
+      explanation: 'onClick() is an event listener, not a lifecycle callback.',
+    },
+    {
+      id: '56',
+      text: 'What must be enabled for a RESTful web service to receive invocations from different domains, subdomains, or ports?',
+      options: ['a. Cache control', 'b. Headers', 'c. CORS', 'd. SSL'],
+      correctAnswerIndex: 2,
+      explanation:
+        'Cross-Origin Resource Sharing (CORS) allows cross-domain requests by adding specific HTTP headers.',
+    },
+    {
+      id: '57',
+      text: "Java's garbage collector carries out which of the following functions?",
+      options: [
+        'a. Frees up memory locations no longer in use',
+        'b. Disposes of an applet when a web page is no longer visible',
+        'c. Disposes of a frame',
+        'd. Terminates a thread',
+      ],
+      correctAnswerIndex: 0,
+      explanation:
+        'Garbage collector automatically reclaims memory occupied by unreachable objects.',
+    },
+    {
+      id: '58',
+      text: 'What will be the output of the following code snippet?\n\nvoid solve() {\n  int a[] = {1, 2, 3, 4, 5};\n  int sum = 0;\n  for(int i = 0; i < 5; i++) {\n    if(i % 2 == 0) sum += a[i];\n  }\n  cout << sum << endl;\n}',
+      options: ['a. 9', 'b. 5', 'c. 6', 'd. 15'],
+      correctAnswerIndex: 0,
+      explanation: 'Sum of elements at even indices (0, 2, 4): 1 + 3 + 5 = 9.',
+    },
+    {
+      id: '59',
+      text: 'Which one of the following is true of a class that has package scope?',
+      options: [
+        'a. Contains abstract methods only',
+        'b. Is a source file, not a class file',
+        'c. Only it can be imported from the package',
+        'd. Visible only to other classes in the same package',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Package-private classes are accessible only within their own package.',
+    },
+    {
+      id: '60',
+      text: 'In an operating system, which mechanism is used to create a process?',
+      options: [
+        'a. Deadlock detection and recovery',
+        'b. Execution of a process creation system call',
+        'c. User request to create a new process',
+        'd. System initialization',
+      ],
+      correctAnswerIndex: 1,
+      explanation:
+        'Processes are created via system calls like `fork()` or `CreateProcess()`.',
+    },
+    {
+      id: '61',
+      text: 'In Linux, a process creates a child process using which system call?',
+      options: ['a. yield()', 'b. exec()', 'c. init()', 'd. fork()'],
+      correctAnswerIndex: 3,
+      explanation:
+        '`fork()` duplicates the calling process, creating a child process.',
+    },
+    {
+      id: '62',
+      text: 'For a binary relationship set R between entity sets A and B, the Mapping Cardinality is ONE-TO-ONE if:',
+      options: [
+        'a. An entity in A is associated with any number of entities in B, and vice versa',
+        'b. An entity in A is associated with any number of entities in B, but an entity in B is associated with at most one entity in A',
+        'c. An entity in A is associated with at most one entity in B, and vice versa',
+        'd. An entity in A is associated with at most one entity in B, but an entity in B can be associated with any number of entities in A',
+      ],
+      correctAnswerIndex: 2,
+      explanation:
+        'One-to-one cardinality means each entity in A relates to at most one entity in B, and vice versa.',
+    },
+    {
+      id: '63',
+      text: 'Which principle is the opposite of "Security through obscurity"?',
+      options: [
+        'a. Least common mechanism',
+        'b. Work factor',
+        'c. Least privileges',
+        'd. Open design',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Open design advocates transparency in security mechanisms, unlike obscurity.',
+    },
+    {
+      id: '64',
+      text: 'Which statement about local search algorithms is true?',
+      options: [
+        'a. Time complexity is independent of problem size',
+        'b. Used for convex optimization problems',
+        'c. Always find globally optimal solutions',
+        'd. Solution quality depends on the starting point and neighborhood function',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Local search algorithms (e.g., hill climbing) depend heavily on initial conditions and neighborhood definitions.',
+    },
+    {
+      id: '65',
+      text: 'What keyword declares an asynchronous function in JavaScript?',
+      options: ['a. future', 'b. sync', 'c. await', 'd. async'],
+      correctAnswerIndex: 3,
+      explanation: 'The `async` keyword marks a function as asynchronous.',
+    },
+    {
+      id: '66',
+      text: 'Android is ______',
+      options: [
+        'a. An operating system',
+        'b. A web server',
+        'c. A programming language',
+        'd. None of the above',
+      ],
+      correctAnswerIndex: 0,
+      explanation: 'Android is a Linux-based OS for mobile devices.',
+    },
+    {
+      id: '67',
+      text: 'Which sorting algorithm is divide-and-conquer?',
+      options: [
+        'a. Bubble sort',
+        'b. Dynamic sort',
+        'c. Insertion sort',
+        'd. Quick sort',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Quick sort divides the array into partitions and recursively sorts them.',
+    },
+    {
+      id: '68',
+      text: 'What is the main disadvantage of uninformed search algorithms?',
+      options: [
+        'a. Not optimal',
+        'b. Not consistent',
+        'c. Not complete',
+        'd. Not admissible',
+      ],
+      correctAnswerIndex: 0,
+      explanation:
+        'Uninformed searches (e.g., BFS, DFS) may not find the shortest path (non-optimal).',
+    },
+    {
+      id: '69',
+      text: 'Which SQL statement gives every employee a 10% raise?',
+      options: [
+        'a. CHANGE Emp SET salary=salary * 1.1',
+        'b. UPDATE Emp SET salary=salary * 1.1',
+        'c. ALTER Emp SET salary=salary * 1.1',
+        'd. MODIFY Emp SET salary=salary * 1.1',
+      ],
+      correctAnswerIndex: 1,
+      explanation: '`UPDATE` modifies existing records in a table.',
+    },
+    {
+      id: '70',
+      text: 'Convert the binary representation 10000000 00001011 00000011 00011111 to dotted-decimal form:',
+      options: [
+        'a. 127.12.5.31',
+        'b. 126.11.3.32',
+        'c. 126.11.5.32',
+        'd. 128.11.3.31',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Binary 10000000 = 128, 00001011 = 11, 00000011 = 3, 00011111 = 31.',
+    },
+    {
+      id: '71',
+      text: 'Which is not desired in a good SRS document?',
+      options: [
+        'a. Functional requirements',
+        'b. Goals of implementation',
+        'c. Algorithm for software implementation',
+        'd. Non-functional requirements',
+      ],
+      correctAnswerIndex: 2,
+      explanation:
+        'SRS should specify "what" not "how" (implementation details are inappropriate).',
+    },
+    {
+      id: '72',
+      text: 'Under which license is Android released?',
+      options: [
+        'a. OSS',
+        'b. SourceForge',
+        'c. Apache/MIT',
+        'd. None of the above',
+      ],
+      correctAnswerIndex: 2,
+      explanation:
+        'Android uses the Apache License 2.0 (open-source with some proprietary components).',
+    },
+    {
+      id: '73',
+      text: 'What is the main advantage of informed search algorithms?',
+      options: ['a. Admissible', 'b. Optimal', 'c. Complete', 'd. Consistent'],
+      correctAnswerIndex: 1,
+      explanation:
+        'Informed searches (e.g., A*) use heuristics to find optimal solutions efficiently.',
+    },
+    {
+      id: '74',
+      text: 'Data generated for one use case may not apply to another. This describes which Big Data characteristic?',
+      options: ['a. Velocity', 'b. Value', 'c. Veracity', 'd. Validity'],
+      correctAnswerIndex: 3,
+      explanation: 'Validity refers to data appropriateness for specific uses.',
+    },
+    {
+      id: '75',
+      text: 'A tester verifies existing functionality after adding a new feature. What testing is this?',
+      options: [
+        'a. Integration testing',
+        'b. User acceptance testing',
+        'c. Functional testing',
+        'd. Regression testing',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Regression testing ensures new changes don’t break existing functionality.',
+    },
+    {
+      id: '76',
+      text: 'What is the difference between Dijkstra’s Algorithm and Uniform Cost Search (UCS)?',
+      options: [
+        'a. UCS finds the optimal solution while Dijkstra’s does not',
+        'b. Dijkstra’s is optimal, but UCS is not',
+        'c. Dijkstra’s uses a priority queue; UCS discovers nodes as they come',
+        'd. Dijkstra’s discovers nodes as they come; UCS uses a queue',
+      ],
+      correctAnswerIndex: 2,
+      explanation:
+        'Both are optimal, but Dijkstra’s explicitly prioritizes nodes via a queue.',
+    },
+    {
+      id: '77',
+      text: 'Which is NOT possible in Java?',
+      options: [
+        'a. Implement multiple interfaces',
+        'b. Execute multiple threads',
+        'c. Create arrays with >2 dimensions',
+        'd. Create and manipulate pointers',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Java abstracts pointers (uses references) for memory safety.',
+    },
+    {
+      id: '78',
+      text: 'Public key systems are useful because:',
+      options: [
+        'a. They use two keys',
+        'b. They are symmetric',
+        'c. Public keys can be shared openly',
+        'd. Private keys can be kept secret',
+      ],
+      correctAnswerIndex: 2,
+      explanation:
+        'Public keys eliminate the need for secure key distribution.',
+    },
+    {
+      id: '79',
+      text: 'What will the output of this code snippet be?\n\nvoid solve() {\n  int a[] = {1, 2, 3, 4, 5};\n  int sum = 0;\n  for(int i = 0; i < 5; i++) {\n    if(i % 2 == 0) sum += *(a + i);\n    else sum -= *(a + i);\n  }\n  cout << sum << endl;\n}',
+      options: ['a. 2', 'b. 34', 'c. 15', 'd. 3'],
+      correctAnswerIndex: 3,
+      explanation: 'Sum: +1 -2 +3 -4 +5 = 3.',
+    },
+    {
+      id: '80',
+      text: 'What are benefits of Big Data applications?',
+      options: [
+        'a. Improved decision-making',
+        'b. Better customer understanding',
+        'c. Enhanced operational efficiency',
+        'd. All of the above',
+      ],
+      correctAnswerIndex: 3,
+      explanation: 'Big Data enhances all these business aspects.',
+    },
+    {
+      id: '81',
+      text: '______ involves generating, collecting, disseminating, and storing information.',
+      options: [
+        'a. Critical Management',
+        'b. Configuration Management',
+        'c. Concurrent Management',
+        'd. Communication Management',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Communication Management handles information flow in projects.',
+    },
+    {
+      id: '82',
+      text: 'A tester refuses to release a harmful feature. Which ethical principle applies?',
+      options: ['a. Honesty', 'b. Fairness', 'c. Responsibility', 'd. Respect'],
+      correctAnswerIndex: 2,
+      explanation:
+        'Responsibility entails prioritizing user safety over client demands.',
+    },
+    {
+      id: '83',
+      text: 'Which sorting algorithm is divide-and-conquer?',
+      options: [
+        'a. Bubble sort',
+        'b. Dynamic sort',
+        'c. Insertion sort',
+        'd. Quick sort',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Quick sort partitions the array and recursively sorts sub-arrays.',
+    },
+    {
+      id: '84',
+      text: 'A ______ involves the team moving the ball in an ad hoc manner.',
+      options: ['a. RAD', 'b. DSDM', 'c. Evolutionary Waterfall', 'd. SCRUM'],
+      correctAnswerIndex: 3,
+      explanation: 'SCRUM uses iterative, flexible teamwork sprints.',
+    },
+    {
+      id: '85',
+      text: 'A good SRS does NOT have which characteristic?',
+      options: [
+        'a. Completeness',
+        'b. Reliability',
+        'c. Consistency',
+        'd. Clarity',
+      ],
+      correctAnswerIndex: 1,
+      explanation: 'Reliability is a system attribute, not an SRS requirement.',
+    },
+    {
+      id: '86',
+      text: 'Which process model has dependent phases with no feedback loops?',
+      options: [
+        'a. Incremental',
+        'b. Evolutionary',
+        'c. Agile',
+        'd. Iterative',
+      ],
+      correctAnswerIndex: 0,
+      explanation:
+        'Incremental models proceed linearly without revisiting phases.',
+    },
+    {
+      id: '87',
+      text: 'What does the `...` operator do in JavaScript?',
+      options: [
+        'a. Makes a loop execute three times',
+        'b. Spreads iterables into individual elements',
+        'c. Continues iterators with an increment interval',
+        'd. No such operator',
+      ],
+      correctAnswerIndex: 1,
+      explanation:
+        'Spread syntax (`...`) expands arrays/objects into elements.',
+    },
+    {
+      id: '88',
+      text: 'Which memory management scheme does NOT map logical to physical addresses?',
+      options: [
+        'a. Segmentation',
+        'b. Paging with segmentation',
+        'c. Swapping',
+        'd. Paging',
+      ],
+      correctAnswerIndex: 2,
+      explanation:
+        'Swapping moves processes between RAM and disk but doesn’t handle address translation.',
+    },
+    {
+      id: '89',
+      text: 'Which method accesses HTML elements using JavaScript?',
+      options: [
+        'a. getTagById()',
+        'b. getElementsByHTMLName()',
+        'c. getHTMLClassByName()',
+        'd. getElementsByClassName()',
+      ],
+      correctAnswerIndex: 3,
+      explanation: '`getElementsByClassName()` selects elements by class name.',
+    },
+    {
+      id: '90',
+      text: 'Project cost computed by comparing to a similar project is called:',
+      options: [
+        'a. Estimation by Analogy',
+        'b. Empirical Model',
+        'c. Expert Judgement',
+        'd. Adhoc Approach',
+      ],
+      correctAnswerIndex: 0,
+      explanation:
+        'Analogy-based estimation leverages historical project data.',
+    },
+    {
+      id: '91',
+      text: 'The longest path determining project completion time is called:',
+      options: [
+        'a. Full path',
+        'b. Complete path',
+        'c. Critical path',
+        'd. Project path',
+      ],
+      correctAnswerIndex: 2,
+      explanation:
+        'Critical path identifies tasks that cannot be delayed without delaying the project.',
+    },
+    {
+      id: '92',
+      text: 'What are the main goals of software architecture?',
+      options: [
+        'a. Enable cost-effective integration',
+        'b. Improve pattern accuracy',
+        'c. Provide structural understanding',
+        'd. Ensure requirement completeness',
+      ],
+      correctAnswerIndex: 2,
+      explanation:
+        'Architecture helps stakeholders understand system structure and concepts.',
+    },
+    {
+      id: '93',
+      text: 'Which is contained in the `src` folder?',
+      options: ['a. XML', 'b. Java source code', 'c. Manifest', 'd. None'],
+      correctAnswerIndex: 1,
+      explanation: '`src` typically holds source code (e.g., `.java` files).',
+    },
+    {
+      id: '94',
+      text: 'Which is NOT an objective of software testing?',
+      options: [
+        'a. Enhancing usability',
+        'b. Identifying defects',
+        'c. Increasing development time',
+        'd. Improving performance',
+      ],
+      correctAnswerIndex: 2,
+      explanation: 'Testing aims to improve quality, not prolong development.',
+    },
+    {
+      id: '95',
+      text: 'CPU fetches instructions from memory according to the value of:',
+      options: [
+        'a. Program counter',
+        'b. Program status word',
+        'c. Instruction register',
+        'd. Status register',
+      ],
+      correctAnswerIndex: 0,
+      explanation:
+        'Program counter (PC) holds the address of the next instruction.',
+    },
+    {
+      id: '96',
+      text: 'What is the first step in data-driven decision-making?',
+      options: [
+        'a. Making a decision',
+        'b. Analyzing data',
+        'c. Interpreting results',
+        'd. Collecting data',
+      ],
+      correctAnswerIndex: 3,
+      explanation: 'Data collection precedes analysis and decision-making.',
+    },
+    {
+      id: '97',
+      text: 'Which describes Triple DES (3DES)?',
+      options: [
+        'a. 144-bit blocks, 1 DES round',
+        'b. 64-bit blocks, 56-bit keys, 3 DES rounds',
+        'c. 168-bit keys on 64-bit blocks',
+        'd. 128-bit blocks, 112-bit keys, 3 DES rounds',
+      ],
+      correctAnswerIndex: 1,
+      explanation:
+        '3DES applies DES three times with 56-bit keys on 64-bit blocks.',
+    },
+    {
+      id: '98',
+      text: 'Which is a checked exception?',
+      options: [
+        'a. IOException',
+        'b. RuntimeException',
+        'c. NumberFormatException',
+        'd. NegativeArraySizeException',
+      ],
+      correctAnswerIndex: 0,
+      explanation:
+        'Checked exceptions (e.g., `IOException`) must be declared/handled.',
+    },
+    {
+      id: '99',
+      text: 'Which one is a false assumption to avoid race conditions in a problem of critical region?',
+      options: [
+        'a. No process running outside its critical region may block other processes.',
+        'b. Assumptions should be made about speeds or the number of CPUs.',
+        'c. No process should have to wait forever to enter its critical region.',
+        'd. No two processes may be simultaneously inside the critical regions.',
+      ],
+      correctAnswerIndex: 1,
+      explanation:
+        'Avoiding race conditions requires no assumptions about CPU speeds or counts (false assumption).',
+    },
+    {
+      id: '100',
+      text: 'Which of the following informed search algorithms guarantees optimality when searching for a solution, but has an exponential time complexity in the worst-case scenario?',
+      options: [
+        'a. A* Search',
+        'b. Uniform Cost Search',
+        'c. Iterative Deepening A* Search',
+        'd. Greedy Best-First Search',
+      ],
+      correctAnswerIndex: 0,
+      explanation:
+        'A* Search guarantees optimality with admissible heuristics but can have exponential time complexity in worst cases.',
+    },
   ],
 }
 
