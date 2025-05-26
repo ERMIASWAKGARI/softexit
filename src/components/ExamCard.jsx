@@ -1,9 +1,12 @@
 import { CircleCheck, FileText } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { getExamResults } from '../utils/examStorage'
 
 export default function ExamCard({ exam }) {
   const [showModal, setShowModal] = useState(false)
+  const [userScore, setUserScore] = useState(null)
+
   const modalRef = useRef(null)
 
   useEffect(() => {
@@ -22,6 +25,20 @@ export default function ExamCard({ exam }) {
     }
   }, [showModal])
 
+  useEffect(() => {
+    const allResults = getExamResults()
+    const examResults = allResults
+      .filter((result) => result.examId === exam.id)
+      .sort((a, b) => new Date(b.date) - new Date(a.date)) // get the most recent
+
+    if (examResults.length > 0) {
+      const latest = examResults[0]
+      setUserScore(latest.score.percentage) // or the whole score if you want more info
+    } else {
+      setUserScore(null)
+    }
+  }, [exam.id])
+
   return (
     <>
       <div
@@ -39,6 +56,10 @@ export default function ExamCard({ exam }) {
           <h3 className="text-lg font-semibold truncate">{exam.title}</h3>
           <p className="text-sm text-gray-500 mt-1">
             {exam.questions.length} Questions
+          </p>
+
+          <p className="text-sm text-gray-500 mt-1">
+            {userScore !== null ? `Score: ${userScore}%` : 'Status: Not Taken'}
           </p>
         </div>
       </div>
