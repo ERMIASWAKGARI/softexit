@@ -1,4 +1,3 @@
-// src/data/examIndex.js
 import exitExam2015 from './exams//2016_exit'
 import exitExam2016 from './exams/2015_exit'
 import juModel2016 from './exams/2016_jumodel'

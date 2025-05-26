@@ -1,4 +1,3 @@
-// src/data/examModel.js
 const aastuMock1 = {
   id: 'aastuMock1',
   title: 'AASTU MOCK-1',

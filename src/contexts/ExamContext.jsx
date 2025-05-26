@@ -7,7 +7,7 @@ export function ExamProvider({ children }) {
   const [exams, setExams] = useState([])
   const [currentExam, setCurrentExam] = useState(null)
   const [answers, setAnswers] = useState([])
-  const [mode, setMode] = useState('review') // 'instant' or 'review'
+  const [mode, setMode] = useState('review')
   const [history, setHistory] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 

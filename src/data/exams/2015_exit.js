@@ -1,4 +1,3 @@
-// src/data/examModel.js
 const exitExam2015 = {
   id: 'exit_exam_2015',
   title: 'Exit 2015',

@@ -6,7 +6,6 @@ export default function JoinGroup() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-red-50 rounded-2xl p-6 sm:p-10 md:p-12 shadow-xl">
           <div className="flex flex-col md:flex-row items-center gap-10">
-            {/* Left Section: Icon + Text + Button */}
             <div className="md:w-2/3 w-full flex flex-col gap-6">
               {/* Icon + Text */}
               <div className="flex items-center gap-4">
@@ -24,7 +23,6 @@ export default function JoinGroup() {
                 </div>
               </div>
 
-              {/* Full Width Button */}
               <a
                 href="https://t.me/ermiwak2"
                 target="_blank"
@@ -42,7 +40,6 @@ export default function JoinGroup() {
               </a>
             </div>
 
-            {/* QR Code Image */}
             <div className="md:w-1/3 w-full flex justify-center">
               <div className="text-center">
                 <img

@@ -4,7 +4,6 @@ export const saveExamResult = (examId, examTitle, score) => {
     examTitle,
     score,
     date: new Date().toISOString(),
-    // timeTaken is expected to be in seconds
     timeTaken: score.timeTaken,
   }
 

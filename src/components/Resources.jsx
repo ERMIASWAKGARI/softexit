@@ -27,7 +27,6 @@ export default function Resources() {
             <h3 className="text-lg font-semibold text-[#2c3e50]">Textbooks</h3>
           </a>
 
-          {/* Video Lectures */}
           <a
             href={telegramLink}
             target="_blank"
@@ -40,7 +39,6 @@ export default function Resources() {
             <h3 className="text-lg font-semibold text-[#2c3e50]">Videos</h3>
           </a>
 
-          {/* Study Notes */}
           <a
             href={telegramLink}
             target="_blank"

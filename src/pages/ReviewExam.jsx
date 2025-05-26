@@ -18,7 +18,6 @@ export default function ReviewExam() {
 
   const questionRef = useRef(null)
 
-  // Scroll to question when it changes
   useEffect(() => {
     questionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }, [currentQuestionIndex])
@@ -52,7 +51,7 @@ export default function ReviewExam() {
   const handleNextQuestion = () => {
     if (isLastQuestion) {
       setExamCompleted(true)
-      setIsReviewOpen(false) // Close review when submitting
+      setIsReviewOpen(false)
     } else {
       setCurrentQuestionIndex((prev) => prev + 1)
     }
@@ -78,8 +77,6 @@ export default function ReviewExam() {
     }
   }
 
-  // Add this inside your component
-
   const handleRetakeExam = () => {
     setUserAnswers({})
     setCurrentQuestionIndex(0)
@@ -89,22 +86,18 @@ export default function ReviewExam() {
 
   if (!exam) return <div className="p-4 text-center">Exam not found</div>
 
-  // Results View - Shows after exam completion
-  // Results View - Shows after exam completion
   if (examCompleted) {
     const score = calculateScore()
     const passed = score.percentage >= 50
 
     return (
       <div className="max-w-3xl mx-auto px-4 py-24">
-        {/* Summary Card */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
           <div
             className={`h-2 ${passed ? 'bg-green-500' : 'bg-red-500'}`}
           ></div>
 
           <div className="p-8 text-center">
-            {/* Circular progress indicator */}
             <div className="relative inline-flex items-center justify-center mb-6">
               <svg className="w-32 h-32">
                 <circle
@@ -133,7 +126,6 @@ export default function ReviewExam() {
               </div>
             </div>
 
-            {/* Result title */}
             <h1
               className={`text-3xl font-bold mb-2 ${
                 passed ? 'text-green-600' : 'text-red-600'
@@ -148,7 +140,6 @@ export default function ReviewExam() {
                 : 'Review your answers to improve next time.'}
             </p>
 
-            {/* Score breakdown */}
             <div className="bg-gray-50 rounded-lg p-6 mb-8">
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center">
@@ -169,7 +160,6 @@ export default function ReviewExam() {
               </div>
             </div>
 
-            {/* Action buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => navigate('/')}
@@ -196,7 +186,6 @@ export default function ReviewExam() {
           </div>
         </div>
 
-        {/* Question Review Section - Only shown when isReviewOpen is true */}
         {isReviewOpen && (
           <div className="bg-white rounded-lg shadow-lg p-6">
             <div className="flex justify-between items-center mb-6">
@@ -211,7 +200,6 @@ export default function ReviewExam() {
               </button>
             </div>
 
-            {/* Question Navigation Grid */}
             <div className="mb-8">
               <h2 className="text-lg font-semibold mb-4">Question Overview</h2>
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
@@ -234,7 +222,6 @@ export default function ReviewExam() {
               </div>
             </div>
 
-            {/* Current Question Review */}
             <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
               <h3 className="text-lg font-semibold mb-4">
                 Q{currentQuestionIndex + 1}: {currentQuestion.text}
@@ -290,7 +277,6 @@ export default function ReviewExam() {
               )}
             </div>
 
-            {/* Navigation Controls */}
             <div className="flex justify-between gap-4 mt-6">
               <button
                 onClick={() => handlePreviousQuestion()}
@@ -313,11 +299,9 @@ export default function ReviewExam() {
     )
   }
 
-  // Exam Taking View
   return (
     <div className="max-w-4xl mx-auto px-4 py-24" ref={questionRef}>
       <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-        {/* Header with progress */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
           <h1 className="text-xl font-bold text-[#2c3e50]">
             {exam.title} - Review Mode
@@ -335,7 +319,6 @@ export default function ReviewExam() {
           </div>
         </div>
 
-        {/* Progress bar */}
         <div className="mb-6">
           <div className="flex justify-between text-sm text-gray-600 mb-1">
             <span>Progress</span>
@@ -353,7 +336,6 @@ export default function ReviewExam() {
           </div>
         </div>
 
-        {/* Current Question */}
         <div className="mb-6">
           <h2 className="text-lg font-semibold mb-4">
             Q{currentQuestionIndex + 1}: {currentQuestion.text}
@@ -385,7 +367,6 @@ export default function ReviewExam() {
         </div>
       </div>
 
-      {/* Navigation Buttons */}
       <div className="flex flex-col sm:flex-row justify-between gap-4">
         <button
           onClick={handlePreviousQuestion}

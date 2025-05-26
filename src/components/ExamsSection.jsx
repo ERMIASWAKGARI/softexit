@@ -9,7 +9,6 @@ export default function ExamsSection() {
   return (
     <section id="exam-section" className="py-10 sm:py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Title */}
         <div className="text-center mb-8 sm:mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#2c3e50] mb-2">
             Practice Exams
@@ -19,14 +18,12 @@ export default function ExamsSection() {
           </p>
         </div>
 
-        {/* Grid of Exams */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6 mb-6 sm:mb-8">
           {displayedExams.map((exam) => (
             <ExamCard key={exam.id} exam={exam} />
           ))}
         </div>
 
-        {/* Show More / Show Less Button */}
         {allExams.length > 6 && (
           <div className="text-center">
             <button

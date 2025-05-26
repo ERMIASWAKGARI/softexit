@@ -100,7 +100,6 @@ export default function History() {
                 className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition-shadow duration-200"
               >
                 <div className="p-4">
-                  {/* Header row */}
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
                     <h2 className="text-lg sm:text-xl font-semibold text-gray-900 line-clamp-2">
                       {result.examTitle || 'Untitled Exam'}
@@ -119,7 +118,6 @@ export default function History() {
                     </div>
                   </div>
 
-                  {/* Progress bar */}
                   <div className="mb-4">
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-sm font-medium text-gray-700">
@@ -145,7 +143,6 @@ export default function History() {
                     </div>
                   </div>
 
-                  {/* Stats row */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                     <div className="flex items-center gap-2 text-gray-600">
                       <Clock className="h-4 w-4 text-gray-500" />

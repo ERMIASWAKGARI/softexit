@@ -3,8 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import ExamTimer from '../components/ExamTimer'
 import allExams from '../data/examIndex'
-
-import { saveExamResult } from '../utils/examStorage' // Add this import
+import { saveExamResult } from '../utils/examStorage'
 
 export default function InstantExam() {
   const { examId } = useParams()
@@ -88,7 +87,7 @@ export default function InstantExam() {
         total: exam.questions.length,
         percentage,
         passed,
-        timeTaken, // ← Add this
+        timeTaken,
       })
 
       setUserAnswers((prev) => ({ ...prev, __resultSaved: true }))
@@ -97,13 +96,11 @@ export default function InstantExam() {
     return (
       <div className="max-w-2xl max-h-2xl mx-auto px-4 py-24">
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          {/* Header with colored status bar */}
           <div
             className={`h-2 ${passed ? 'bg-green-500' : 'bg-red-500'}`}
           ></div>
 
           <div className="p-8 text-center">
-            {/* Circular progress indicator */}
             <div className="relative inline-flex items-center justify-center mb-6">
               <svg className="w-32 h-32">
                 <circle
@@ -130,7 +127,6 @@ export default function InstantExam() {
               <div className="absolute text-3xl font-bold">{percentage}%</div>
             </div>
 
-            {/* Result title */}
             <h1
               className={`text-3xl font-bold mb-2 ${
                 passed ? 'text-green-600' : 'text-red-600'
@@ -145,7 +141,6 @@ export default function InstantExam() {
                 : 'You were close! Review the material and try again.'}
             </p>
 
-            {/* Score breakdown */}
             <div className="bg-gray-50 rounded-lg p-6 mb-8">
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center">
@@ -175,7 +170,6 @@ export default function InstantExam() {
               </div>
             </div>
 
-            {/* Action buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => navigate('/')}

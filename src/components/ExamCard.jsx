@@ -6,7 +6,6 @@ export default function ExamCard({ exam }) {
   const [showModal, setShowModal] = useState(false)
   const modalRef = useRef(null)
 
-  // Close modal on outside click
   useEffect(() => {
     function handleClickOutside(event) {
       if (modalRef.current && !modalRef.current.contains(event.target)) {

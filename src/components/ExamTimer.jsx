@@ -5,7 +5,6 @@ function ExamTimer({ duration, onTimeUp, onTick }) {
   const endTimeRef = useRef(null)
 
   useEffect(() => {
-    // Only set endTime once
     if (!endTimeRef.current) {
       endTimeRef.current = Date.now() + duration * 1000
     }
@@ -28,7 +27,7 @@ function ExamTimer({ duration, onTimeUp, onTick }) {
         clearInterval(intervalId)
         if (onTimeUp) onTimeUp()
       }
-    }, 1000) // 1 second interval is enough, no need for 250ms
+    }, 1000)
 
     return () => clearInterval(intervalId)
   }, [duration, onTimeUp, onTick])

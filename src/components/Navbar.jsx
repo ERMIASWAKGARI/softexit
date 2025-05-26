@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  // Close on escape or click outside
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') setIsMenuOpen(false)
@@ -33,7 +32,6 @@ export default function Navbar() {
     <nav className="bg-[#B80C09] fixed w-full z-50 transition-colors duration-200 px-8 py-2">
       <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <Link
               to="/"
@@ -51,7 +49,6 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
             <Link
               to="/"
@@ -90,7 +87,6 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(true)}
@@ -103,10 +99,8 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu overlay */}
       {isMenuOpen && <div className="fixed inset-0 z-40 bg-opacity-40" />}
 
-      {/* Slide-in menu */}
       <div
         id="mobile-menu"
         className={`fixed top-0 right-0 h-auto w-64 bg-[#B80C09] shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${

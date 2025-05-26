@@ -1,4 +1,3 @@
-// src/data/examModel.js
 const juModel2016 = {
   id: '2016JUModel',
   title: '2016JU Model',
