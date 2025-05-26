@@ -767,6 +767,417 @@ const exitModel3 = {
       explanation:
         'onResume() is called when the activity comes to the foreground and becomes interactive (after onCreate() or onRestart()).',
     },
+    {
+      id: '66',
+      text: 'In which step of SDLC is actual programming of software code done?',
+      options: [
+        'Analysis',
+        'Design',
+        'Development and Documentation',
+        'Maintenance and Evaluation',
+      ],
+      correctAnswerIndex: 2,
+      explanation:
+        'Development involves writing code based on design specifications. Documentation occurs in parallel.',
+    },
+    {
+      id: '67',
+      text: 'Informed search algorithms use ______ functions to reduce search time.',
+      options: ['Built-in', 'Complex', 'Heuristic', 'User-defined'],
+      correctAnswerIndex: 2,
+      explanation:
+        'Heuristic functions estimate the cost to reach the goal, guiding searches more efficiently (e.g., A* algorithm uses f(n) = g(n) + h(n)).',
+    },
+    {
+      id: '68',
+      text: 'Which is an indirect measure of the software development process?',
+      options: ['Efficiency', 'Cost', 'Effort Applied', 'All'],
+      correctAnswerIndex: 3,
+      explanation:
+        "Indirect metrics like cost, effort, and efficiency reflect process quality but don't measure code directly (e.g., lines of code).",
+    },
+    {
+      id: '69',
+      text: 'What leads to a standard approach for creating software documentation?',
+      options: [
+        'Information sharing',
+        'Document standardization',
+        'Data integration',
+        'Data integrity',
+      ],
+      correctAnswerIndex: 1,
+      explanation:
+        'Standardized templates/tools ensure consistent, clear documentation across projects.',
+    },
+    {
+      id: '70',
+      text: 'Linked lists permit constant-time insertions/removals but do not allow:',
+      options: ['Searching', 'Random access', 'Displaying items', 'All'],
+      correctAnswerIndex: 1,
+      explanation:
+        'Linked lists require O(n) traversal for access (no direct indexing like arrays). Insertions/deletions are O(1) at head/tail.',
+    },
+    {
+      id: '71',
+      text: 'Most problem-solving algorithms studied in computer science are kinds of:',
+      options: [
+        'Sort algorithms',
+        'Data structures',
+        'Search algorithms',
+        'None',
+      ],
+      correctAnswerIndex: 2,
+      explanation:
+        'Search algorithms (e.g., binary search, DFS/BFS) are fundamental to problem-solving (finding paths, optimizing solutions).',
+    },
+    {
+      id: '72',
+      text: 'Which is not a Super global predefined variable in PHP?',
+      options: ['S|_NETWORK', 'S|_REQUEST', 'S|_GET', 'S|_SERVER'],
+      correctAnswerIndex: 0,
+      explanation:
+        'PHP superglobals include S|_GET, S|_POST, S|_SERVER, S|_REQUEST, etc. S|_NETWORK is not a valid superglobal.',
+    },
+    {
+      id: '73',
+      text: 'Specialization is a feature of which organizational structure?',
+      options: ['Divisional', 'Functional', 'Multi-divisional', 'Matrix'],
+      correctAnswerIndex: 1,
+      explanation:
+        'Functional structures group employees by specialized roles (e.g., developers, testers, designers).',
+    },
+    {
+      id: '74',
+      text: 'Which CPU scheduling algorithm prevents starvation?',
+      options: [
+        'Round Robin',
+        'Shortest Time Remaining First',
+        'First Come First Served',
+        'Rate Monotonic',
+      ],
+      correctAnswerIndex: 0,
+      explanation:
+        'Round Robin ensures fairness by allocating CPU time in fixed time slices (no process waits indefinitely).',
+    },
+    {
+      id: '75',
+      text: 'Testing under varying workloads to evaluate performance is called:',
+      options: [
+        'Usability Testing',
+        'Load Testing',
+        'Volume Testing',
+        'Stress Testing',
+      ],
+      correctAnswerIndex: 1,
+      explanation:
+        'Load Testing measures system behavior under expected/peak workloads (e.g., 1000 users). Stress testing pushes beyond limits.',
+    },
+    {
+      id: '76',
+      text: 'The algorithm should be effective which means it must have:',
+      options: [
+        'Complex primitive',
+        'Basic primitive',
+        'Basic steps',
+        'Complex steps',
+      ],
+      correctAnswerIndex: 2,
+      explanation:
+        'Effective algorithms rely on basic, unambiguous steps that can be executed in finite time.',
+    },
+    {
+      id: '77',
+      text: 'The binary search method needs no more than ______ comparisons.',
+      options: ['[Log₂n]+1', 'Log₂n', '[Log₂n]+2', '[Log₂n]-1'],
+      correctAnswerIndex: 0,
+      explanation:
+        'Binary search has a worst-case time complexity of O(log n), requiring at most ⌊log₂n⌋ + 1 comparisons.',
+    },
+    {
+      id: '78',
+      text: 'The data Warehouse is ______.',
+      options: ['Write only', 'Read write only', 'Read only', 'None'],
+      correctAnswerIndex: 2,
+      explanation:
+        'Data warehouses are optimized for read-only analytical queries, not frequent writes.',
+    },
+    {
+      id: '79',
+      text: 'The examination of large amounts of data to find patterns is known as:',
+      options: [
+        'Data examination',
+        'Data analysis',
+        'Information analysis',
+        'Big data analytics',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Big data analytics involves processing large datasets to uncover patterns, trends, and insights.',
+    },
+    {
+      id: '80',
+      text: 'The learning used to find hidden patterns in unlabeled data is called:',
+      options: [
+        'Unsupervised learning',
+        'Supervised learning',
+        'Reinforcement learning',
+        'None',
+      ],
+      correctAnswerIndex: 0,
+      explanation:
+        'Unsupervised learning (e.g., clustering) discovers patterns in data without pre-labeled outcomes.',
+    },
+    {
+      id: '81',
+      text: 'The main justification for implementing a data warehouse is to provide:',
+      options: [
+        'Access to data',
+        'Cheaper transportation',
+        'Decision support',
+        'Storing large volumes',
+      ],
+      correctAnswerIndex: 2,
+      explanation:
+        'Data warehouses consolidate data for business intelligence and decision-making purposes.',
+    },
+    {
+      id: '82',
+      text: 'The set of all possible solutions to a problem is called the:',
+      options: ['Search space', 'Data structure', 'Database', 'None'],
+      correctAnswerIndex: 0,
+      explanation:
+        'In algorithm design, the search space encompasses all potential solutions to a problem.',
+    },
+    {
+      id: '83',
+      text: '______ refers to the ability to turn data into business value.',
+      options: ['Volume', 'Value', 'Velocity', 'Variety'],
+      correctAnswerIndex: 1,
+      explanation:
+        'The "Value" characteristic of big data emphasizes deriving actionable insights from data.',
+    },
+    {
+      id: '84',
+      text: '______ network transmits bits as light pulses.',
+      options: ['Fiber-based', 'Copper-based', 'Wireless', 'All'],
+      correctAnswerIndex: 0,
+      explanation:
+        'Fiber-optic networks use light pulses through glass fibers for high-speed data transmission.',
+    },
+    {
+      id: '85',
+      text: 'A data structure with elements forming a sequence is called:',
+      options: ['Bipolar', 'Scalar', 'Linear', 'Polar'],
+      correctAnswerIndex: 2,
+      explanation:
+        'Linear data structures (e.g., arrays, linked lists) organize elements sequentially.',
+    },
+    {
+      id: '86',
+      text: 'A stack retrieves data in the ______ order.',
+      options: ['Same', 'Descending', 'Ascending', 'Reverse'],
+      correctAnswerIndex: 3,
+      explanation:
+        'Stacks follow LIFO (Last-In-First-Out), reversing the insertion order during retrieval.',
+    },
+    {
+      id: '87',
+      text: 'Which testing technique correlates outcomes with influencing factors?',
+      options: [
+        'All pair testing',
+        'Decision table testing',
+        'State-transition testing',
+        'Cause-effect graph testing',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Cause-effect graphing maps inputs (causes) to outputs (effects) systematically.',
+    },
+    {
+      id: '88',
+      text: 'Which test cases should be automated due to repetitiveness?',
+      options: [
+        'High Risk',
+        'Easy to Automate',
+        'Less Volatile',
+        'Boring and Time-Consuming',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Repetitive, tedious tests are prime candidates for automation to save time.',
+    },
+    {
+      id: '89',
+      text: "What do IBM's project failure statistics (31% abandoned, 53% over budget) signify?",
+      options: [
+        'Lack of training',
+        'Management issues',
+        'Lack of software ethics',
+        'All',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'These figures reflect systemic issues including training gaps, poor management, and ethical shortcomings.',
+    },
+    {
+      id: '90',
+      text: 'All describe Hadoop EXCEPT:',
+      options: [
+        'Open-source',
+        'Real-time',
+        'Distributed computing',
+        'Java-based',
+      ],
+      correctAnswerIndex: 1,
+      explanation:
+        'Hadoop is batch-oriented; real-time processing requires tools like Apache Spark.',
+    },
+    {
+      id: '91',
+      text: 'Which is a white-box testing technique?',
+      options: [
+        'Data flow testing',
+        'Equivalence partitioning',
+        'Boundary value testing',
+        'Control flow testing',
+      ],
+      correctAnswerIndex: 0,
+      explanation:
+        'Data flow testing analyzes variable usage paths through code (internal structure awareness).',
+    },
+    {
+      id: '92',
+      text: 'What does Pattern-based design involve?',
+      options: [
+        'Examining problems in existing apps',
+        'Searching pattern repositories for solutions',
+        'Examining new application problems',
+        'Both A and B',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Pattern-based design leverages existing solutions from repositories for both legacy and new systems.',
+    },
+    {
+      id: '93',
+      text: 'After defect fixes, which test should you run?',
+      options: [
+        'Localization Testing',
+        'Regression Testing',
+        'Smoke Testing',
+        'Sanity Testing',
+      ],
+      correctAnswerIndex: 1,
+      explanation:
+        'Regression testing ensures fixes don’t introduce new defects in previously working functionality.',
+    },
+    {
+      id: '94',
+      text: 'Business Intelligence and data warehousing are used for:',
+      options: ['Analyzing sales data', 'Data Mining', 'Forecasting', 'All'],
+      correctAnswerIndex: 3,
+      explanation:
+        'BI systems support analysis, mining, and forecasting through consolidated data.',
+    },
+    {
+      id: '95',
+      text: 'Data mining is:',
+      options: [
+        'The discovery phase of knowledge',
+        'A time-variant non-volatile data collection',
+        'Selecting the right data',
+        'None',
+      ],
+      correctAnswerIndex: 0,
+      explanation:
+        'Data mining extracts knowledge (patterns, trends) from raw data.',
+    },
+    {
+      id: '96',
+      text: 'To establish an ideal PMO, you should:',
+      options: [
+        'Reassign resources from ongoing projects',
+        'Find collaborative management opportunities',
+        'Reduce existing project resources',
+        'Speed up a specific project',
+      ],
+      correctAnswerIndex: 1,
+      explanation:
+        'PMOs optimize organizational project management through collaboration and standardization.',
+    },
+    {
+      id: '97',
+      text: 'Which SQL query filters active posts with their users?',
+      options: [
+        'SELECT users.id, user.role, posts.id, posts.title FROM users, posts WHERE posts.user_id == users.id',
+        "SELECT id, role FROM users AND exists (SELECT FROM posts WHERE user_id = users.id AND status = 'active')",
+        "SELECT * FROM 'posts' WHERE status='active'",
+        'B and C',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Options B and C correctly filter active posts (B uses a subquery, C a simple filter).',
+    },
+    {
+      id: '98',
+      text: 'Democratic/inclusive management styles characterize ______ structures.',
+      options: ['Flat', 'Bureaucratic', 'Functional', 'Hierarchical'],
+      correctAnswerIndex: 0,
+      explanation:
+        'Flat organizations decentralize decision-making, promoting collaboration.',
+    },
+    {
+      id: '99',
+      text: 'How to stop Android services?',
+      options: [
+        'stopSelf() and stopService()',
+        'System.exit()',
+        'finish()',
+        'None',
+      ],
+      correctAnswerIndex: 0,
+      explanation:
+        'Android services are stopped programmatically using stopSelf() (from within) or stopService() (externally).',
+    },
+    {
+      id: '100',
+      text: 'How to prevent buffer overflow attacks?',
+      options: [
+        'Regular code testing',
+        'Built-in security measures',
+        'Languages with memory protection',
+        'All',
+      ],
+      correctAnswerIndex: 3,
+      explanation:
+        'Buffer overflow prevention requires a multi-layered approach: secure coding, testing, and language safeguards.',
+    },
+    {
+      id: '101',
+      text: 'Identify the WRONG statement about multitasking:',
+      options: [
+        'Increases CPU/system throughput',
+        'Uses time-sharing',
+        'Takes maximum time per process',
+        'Switches CPU between processes',
+      ],
+      correctAnswerIndex: 2,
+      explanation:
+        'Multitasking aims to minimize process time via rapid context switching, not maximize it.',
+    },
+    {
+      id: '102',
+      text: 'Recommended OS architecture for a software professional?',
+      options: [
+        '32-bit for compatibility/size',
+        '64-bit for compatibility/size',
+        '64-bit for cost/ease-of-use',
+        '32-bit for ease-of-use',
+      ],
+      correctAnswerIndex: 1,
+      explanation:
+        '64-bit systems offer better compatibility with modern software and support larger memory addressing.',
+    },
   ],
 }
 
