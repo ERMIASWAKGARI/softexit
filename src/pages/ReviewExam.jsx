@@ -2,6 +2,7 @@ import { CheckCircle2, X, XCircle } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import allExams from '../data/examIndex'
+import { saveExamResult } from '../utils/examStorage'
 
 export default function ReviewExam() {
   const { examId } = useParams()
@@ -18,6 +19,18 @@ export default function ReviewExam() {
   useEffect(() => {
     questionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }, [currentQuestionIndex])
+
+  useEffect(() => {
+    if (examCompleted) {
+      const score = calculateScore()
+      saveExamResult(examId, exam.title, {
+        correct: score.correct,
+        total: score.total,
+        percentage: score.percentage,
+        passed: score.percentage >= 50,
+      })
+    }
+  }, [examCompleted, examId, exam?.title])
 
   const currentQuestion = exam?.questions[currentQuestionIndex]
   const isLastQuestion = currentQuestionIndex === exam?.questions.length - 1

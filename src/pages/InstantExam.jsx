@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import allExams from '../data/examIndex'
 
+import { saveExamResult } from '../utils/examStorage' // Add this import
+
 export default function InstantExam() {
   const { examId } = useParams()
   const navigate = useNavigate()
@@ -12,6 +14,7 @@ export default function InstantExam() {
   const [userAnswers, setUserAnswers] = useState({})
   const [showResults, setShowResults] = useState(false)
   const [examCompleted, setExamCompleted] = useState(false)
+  const [hasAnswered, setHasAnswered] = useState(false)
   const questionRef = useRef(null)
 
   useEffect(() => {
@@ -20,16 +23,19 @@ export default function InstantExam() {
 
   const currentQuestion = exam?.questions[currentQuestionIndex]
   const isLastQuestion = currentQuestionIndex === exam?.questions.length - 1
-  const answeredCount = Object.keys(userAnswers).length
+  const answeredCount = currentQuestionIndex + (showResults ? 1 : 0)
 
   const handleAnswerSelect = (answerIndex) => {
-    if (examCompleted) return
+    if (examCompleted || showResults) return
 
-    const newAnswers = {
-      ...userAnswers,
+    setUserAnswers((prev) => ({
+      ...prev,
       [currentQuestion.id]: answerIndex,
-    }
-    setUserAnswers(newAnswers)
+    }))
+    setHasAnswered(true)
+  }
+
+  const handleShowFeedback = () => {
     setShowResults(true)
   }
 
@@ -38,6 +44,7 @@ export default function InstantExam() {
       setExamCompleted(true)
     } else {
       setCurrentQuestionIndex((prev) => prev + 1)
+      setHasAnswered(false)
       setShowResults(false)
     }
   }
@@ -54,69 +61,135 @@ export default function InstantExam() {
     }
   }
 
+  const calculateCurrentCorrect = () => {
+    return exam.questions.slice(0, answeredCount).reduce((count, question) => {
+      if (userAnswers[question.id] !== undefined) {
+        return userAnswers[question.id] === question.correctAnswerIndex
+          ? count + 1
+          : count
+      }
+      return count
+    }, 0)
+  }
+
   if (!exam) return <div className="p-4 text-center">Exam not found</div>
 
   if (examCompleted) {
     const score = calculateScore()
     const { count, percentage } = score
-    const passed = percentage >= 50 // Adjust this threshold as needed
+    const passed = percentage >= 50
+
+    if (!userAnswers.__resultSaved) {
+      saveExamResult(examId, exam.title, {
+        correct: count,
+        total: exam.questions.length,
+        percentage,
+        passed,
+      })
+      setUserAnswers((prev) => ({ ...prev, __resultSaved: true }))
+    }
 
     return (
-      <div className="max-w-3xl mx-auto px-4 py-24">
-        <div className="bg-white shadow-md rounded-lg p-8">
-          <h1 className="text-3xl font-bold text-[#2c3e50] mb-4 text-center">
-            🎉 Exam Completed!
-          </h1>
+      <div className="max-w-2xl max-h-2xl mx-auto px-4 py-24">
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+          {/* Header with colored status bar */}
+          <div
+            className={`h-2 ${passed ? 'bg-green-500' : 'bg-red-500'}`}
+          ></div>
 
-          <p className="text-center text-lg text-gray-700 mb-8">
-            {passed
-              ? "Great job! You've shown strong understanding of the material."
-              : 'Don’t sweat it. Use this as fuel to level up and try again!'}
-          </p>
-
-          <div className="bg-gray-100 rounded-md p-6 flex flex-col sm:flex-row justify-between items-center mb-8">
-            <div className="text-center sm:text-left">
-              <h2 className="text-lg font-semibold text-gray-800">
-                Your Score
-              </h2>
-              <p className="text-2xl font-bold text-[#B80C09]">
-                {count} / {exam.questions.length}
-              </p>
+          <div className="p-8 text-center">
+            {/* Circular progress indicator */}
+            <div className="relative inline-flex items-center justify-center mb-6">
+              <svg className="w-32 h-32">
+                <circle
+                  className="text-gray-200"
+                  strokeWidth="8"
+                  stroke="currentColor"
+                  fill="transparent"
+                  r="56"
+                  cx="64"
+                  cy="64"
+                />
+                <circle
+                  className={`${passed ? 'text-green-500' : 'text-red-500'}`}
+                  strokeWidth="8"
+                  strokeDasharray={`${percentage * 3.14}, 314`}
+                  strokeLinecap="round"
+                  stroke="currentColor"
+                  fill="transparent"
+                  r="56"
+                  cx="64"
+                  cy="64"
+                />
+              </svg>
+              <div className="absolute text-3xl font-bold">{percentage}%</div>
             </div>
 
-            <div className="mt-4 sm:mt-0 text-center sm:text-right">
-              <h2 className="text-lg font-semibold text-gray-800">
-                Percentage
-              </h2>
-              <p
-                className={`text-2xl font-bold ${
-                  passed ? 'text-green-600' : 'text-red-600'
+            {/* Result title */}
+            <h1
+              className={`text-3xl font-bold mb-2 ${
+                passed ? 'text-green-600' : 'text-red-600'
+              }`}
+            >
+              {passed ? 'Congratulations!' : 'Keep Practicing!'}
+            </h1>
+
+            <p className="text-gray-600 mb-6">
+              {passed
+                ? 'You have successfully passed the exam.'
+                : 'You were close! Review the material and try again.'}
+            </p>
+
+            {/* Score breakdown */}
+            <div className="bg-gray-50 rounded-lg p-6 mb-8">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-gray-800">
+                    {count}
+                  </div>
+                  <div className="text-sm text-gray-500">Correct Answers</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-gray-800">
+                    {exam.questions.length - count}
+                  </div>
+                  <div className="text-sm text-gray-500">Incorrect Answers</div>
+                </div>
+              </div>
+              <div className="mt-4 pt-4 border-t border-gray-200 text-center">
+                <div className="text-sm font-medium text-gray-500">
+                  Passing Score
+                </div>
+                <div className="text-lg font-bold text-gray-800">
+                  50% or higher
+                </div>
+              </div>
+            </div>
+
+            {/* Action buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => navigate('/')}
+                className="flex-1 px-6 py-3 border border-gray-300 rounded-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+              >
+                Back to Home
+              </button>
+              <button
+                onClick={() => {
+                  setCurrentQuestionIndex(0)
+                  setUserAnswers({})
+                  setExamCompleted(false)
+                  setShowResults(false)
+                }}
+                className={`flex-1 px-6 py-3 rounded-lg font-medium text-white transition-colors ${
+                  passed
+                    ? 'bg-green-600 hover:bg-green-700'
+                    : 'bg-[#B80C09] hover:bg-[#e74c3c]'
                 }`}
               >
-                {percentage}%
-              </p>
+                {passed ? 'Retake Exam' : 'Try Again'}
+              </button>
             </div>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => navigate('/')}
-              className="px-6 py-3 bg-[#B80C09] text-white font-semibold rounded-md hover:bg-[#e74c3c] transition-colors"
-            >
-              ⬅ Back to Exams
-            </button>
-
-            <button
-              onClick={() => {
-                setCurrentQuestionIndex(0)
-                setUserAnswers({})
-                setExamCompleted(false)
-                setShowResults(false)
-              }}
-              className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition-colors"
-            >
-              🔁 Retake Exam
-            </button>
           </div>
         </div>
       </div>
@@ -129,14 +202,6 @@ export default function InstantExam() {
         <h1 className="text-xl font-bold text-[#2c3e50]">
           {exam.title} - Instant Feedback
         </h1>
-        <div className="flex items-center gap-4">
-          <span className="text-sm">
-            Question {currentQuestionIndex + 1} of {exam.questions.length}
-          </span>
-          <span className="text-sm bg-gray-200 px-2 py-1 rounded">
-            Answered: {answeredCount}/{exam.questions.length}
-          </span>
-        </div>
       </div>
 
       <div className="mb-6">
@@ -146,13 +211,23 @@ export default function InstantExam() {
             {Math.round((answeredCount / exam.questions.length) * 100)}%
           </span>
         </div>
-        <div className="bg-gray-200 rounded-full h-2.5">
+
+        <div className="bg-gray-200 rounded-full h-2.5 mb-4">
           <div
             className="bg-[#B80C09] h-2.5 rounded-full"
             style={{
               width: `${(answeredCount / exam.questions.length) * 100}%`,
             }}
           ></div>
+        </div>
+
+        <div className="flex items-center justify-end gap-6">
+          <span className="text-sm">
+            Question {currentQuestionIndex + 1} of {exam.questions.length}
+          </span>
+          <span className="text-sm bg-gray-200 px-2 py-1 rounded">
+            Correct: {calculateCurrentCorrect()}/{answeredCount}
+          </span>
         </div>
       </div>
 
@@ -218,7 +293,16 @@ export default function InstantExam() {
         )}
       </div>
 
-      <div className="flex justify-end">
+      <div className="flex justify-end mt-4">
+        {hasAnswered && !showResults && (
+          <button
+            onClick={handleShowFeedback}
+            className="px-4 py-2 bg-[#B80C09] text-white rounded-md hover:bg-[#e74c3c]"
+          >
+            Next
+          </button>
+        )}
+
         {showResults && (
           <button
             onClick={handleNextQuestion}
