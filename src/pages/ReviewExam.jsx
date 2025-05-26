@@ -344,7 +344,6 @@ export default function ReviewExam() {
           <div className="space-y-3">
             {currentQuestion.options.map((option, index) => {
               const isSelected = userAnswers[currentQuestion.id] === index
-              const optionLetters = ['A', 'B', 'C', 'D']
 
               return (
                 <div
@@ -356,9 +355,6 @@ export default function ReviewExam() {
                       : 'border-gray-300 hover:bg-gray-50'
                   }`}
                 >
-                  <span className="font-medium mr-2">
-                    {optionLetters[index]}.
-                  </span>
                   <span>{option}</span>
                 </div>
               )

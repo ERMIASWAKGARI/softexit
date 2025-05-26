@@ -237,7 +237,6 @@ export default function InstantExam() {
           {currentQuestion.options.map((option, index) => {
             const isSelected = userAnswers[currentQuestion.id] === index
             const isCorrect = index === currentQuestion.correctAnswerIndex
-            const optionLetters = ['A', 'B', 'C', 'D']
 
             let optionClasses = 'p-3 border rounded-lg flex items-start'
 
@@ -261,9 +260,6 @@ export default function InstantExam() {
                 className={optionClasses}
                 onClick={() => !showResults && handleAnswerSelect(index)}
               >
-                <span className="font-medium mr-2">
-                  {optionLetters[index]}.
-                </span>
                 <span>{option}</span>
                 {showResults && isCorrect && (
                   <CheckCircle2
