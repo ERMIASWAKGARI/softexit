@@ -1,7 +1,7 @@
 import { BookOpen, StickyNote, Video } from 'lucide-react'
 
 export default function Resources() {
-  const telegramLink = 'https://t.me/ermiwak2'
+  const telegramLink = 'https://t.me/SoftExit_StudyGroup'
 
   return (
     <section className="py-12 bg-white">

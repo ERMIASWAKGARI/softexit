@@ -24,7 +24,7 @@ export default function JoinGroup() {
               </div>
 
               <a
-                href="https://t.me/ermiwak2"
+                href="https://t.me/SoftExit_StudyGroup"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex justify-center items-center w-full px-4 sm:px-6 py-3 bg-[#B80C09] hover:-translate-y-1 text-white rounded-lg font-semibold hover:bg-red-700 transition text-sm sm:text-base md:text-lg"
