@@ -59,7 +59,7 @@ export default function ExamCard({ exam }) {
           </p>
 
           <p className="text-sm text-gray-500 mt-1">
-            {userScore !== null ? `Score: ${userScore}%` : 'Status: Not Taken'}
+            {userScore !== null ? `Score: ${userScore}% (latest)` : 'Not Taken'}
           </p>
         </div>
       </div>
