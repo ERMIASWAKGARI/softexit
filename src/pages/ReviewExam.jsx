@@ -308,18 +308,15 @@ export default function ReviewExam() {
           </h1>
 
           <div className="flex items-center gap-4">
-            <span className="text-sm bg-gray-100 px-3 py-1 rounded">
-              Question {currentQuestionIndex + 1} of {exam.questions.length}
-            </span>
             <ExamTimer
-              duration={120}
+              duration={60 * 60}
               onTimeUp={() => setExamCompleted(true)}
               onTick={(elapsed) => setTimeTaken(elapsed)}
             />
           </div>
         </div>
 
-        <div className="mb-6">
+        <div className="mb-2">
           <div className="flex justify-between text-sm text-gray-600 mb-1">
             <span>Progress</span>
             <span>
@@ -335,11 +332,14 @@ export default function ReviewExam() {
             ></div>
           </div>
         </div>
+        <div className="flex items-center justify-end gap-6">
+          <span className="text-sm bg-gray-100 px-3 py-1 rounded">
+            Question {currentQuestionIndex + 1} of {exam.questions.length}
+          </span>
+        </div>
 
-        <div className="mb-6">
-          <h2 className="text-lg font-semibold mb-4">
-            Q{currentQuestionIndex + 1}: {currentQuestion.text}
-          </h2>
+        <div className="mt-2">
+          <h2 className="text-lg font-semibold mb-4">{currentQuestion.text}</h2>
 
           <div className="space-y-3">
             {currentQuestion.options.map((option, index) => {

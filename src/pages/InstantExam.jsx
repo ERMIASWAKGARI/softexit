@@ -100,7 +100,7 @@ export default function InstantExam() {
             className={`h-2 ${passed ? 'bg-green-500' : 'bg-red-500'}`}
           ></div>
 
-          <div className="p-8 text-center">
+          <div className="p-8 text-center ">
             <div className="relative inline-flex items-center justify-center mb-6">
               <svg className="w-32 h-32">
                 <circle
@@ -159,15 +159,6 @@ export default function InstantExam() {
               <div className="text-sm text-gray-500 mt-2">
                 Time Taken: {Math.floor(timeTaken / 60)}m {timeTaken % 60}s
               </div>
-
-              <div className="mt-4 pt-4 border-t border-gray-200 text-center">
-                <div className="text-sm font-medium text-gray-500">
-                  Passing Score
-                </div>
-                <div className="text-lg font-bold text-gray-800">
-                  50% or higher
-                </div>
-              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -206,14 +197,14 @@ export default function InstantExam() {
           {exam.title} - Instant Feedback
         </h1>
         <ExamTimer
-          duration={120}
+          duration={60 * 3}
           onTimeUp={() => setExamCompleted(true)}
           onTick={(elapsed) => setTimeTaken(elapsed)}
         />
       </div>
 
-      <div className="mb-6">
-        <div className="flex justify-between text-sm text-gray-600 mb-1">
+      <div className="">
+        <div className="flex justify-between text-sm text-gray-600">
           <span>Progress</span>
           <span>
             {Math.round((answeredCount / exam.questions.length) * 100)}%
