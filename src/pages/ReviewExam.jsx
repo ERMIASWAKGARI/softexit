@@ -309,7 +309,7 @@ export default function ReviewExam() {
 
           <div className="flex items-center gap-4">
             <ExamTimer
-              duration={60 * 60}
+              duration={60 * 60 * 3}
               onTimeUp={() => setExamCompleted(true)}
               onTick={(elapsed) => setTimeTaken(elapsed)}
             />

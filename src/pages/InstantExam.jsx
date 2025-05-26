@@ -197,7 +197,7 @@ export default function InstantExam() {
           {exam.title} - Instant Feedback
         </h1>
         <ExamTimer
-          duration={60 * 3}
+          duration={60 * 60 * 3}
           onTimeUp={() => setExamCompleted(true)}
           onTick={(elapsed) => setTimeTaken(elapsed)}
         />
