@@ -2,7 +2,7 @@ import { Users } from 'lucide-react'
 
 export default function JoinGroup() {
   return (
-    <section className="py-12 sm:py-16 bg-white">
+    <section id="join-group" className="py-12 sm:py-16 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-red-50 rounded-2xl p-6 sm:p-10 md:p-12 shadow-xl">
           <div className="flex flex-col md:flex-row items-center gap-10">

@@ -77,14 +77,15 @@ export default function HeroSection() {
               preparation with these comprehensive resources.
             </p>
 
-            <button
+            <a
+              href="/#exam-section"
               className="bg-[#B80C09] text-white px-6 py-3 rounded-lg font-semibold hover:-translate-y-1 transition-transform duration-200"
               style={{
                 fontSize: 'clamp(1rem, 2.5vw, 1.2rem)', // 16px to 20px
               }}
             >
               Start Practicing Now
-            </button>
+            </a>
           </div>
 
           {/* Right side - Rotating circle of logos */}

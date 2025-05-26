@@ -12,7 +12,6 @@ export default function App() {
       <Router>
         <div>
           <Navbar />
-
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/exam/instant/:examId" element={<InstantExamPage />} />
