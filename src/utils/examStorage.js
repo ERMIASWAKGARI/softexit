@@ -4,17 +4,17 @@ export const saveExamResult = (examId, examTitle, score) => {
     examTitle,
     score,
     date: new Date().toISOString(),
+    // timeTaken is expected to be in seconds
+    timeTaken: score.timeTaken,
   }
 
   try {
-    // Get existing results or initialize empty array
     const existingResults = localStorage.getItem('examResults')
     let results = []
 
     if (existingResults) {
       try {
         results = JSON.parse(existingResults)
-        // Ensure we have an array
         if (!Array.isArray(results)) {
           results = []
         }
@@ -23,14 +23,10 @@ export const saveExamResult = (examId, examTitle, score) => {
       }
     }
 
-    // Prevent duplicate entries for the same exam at the same time
-    // (within 1 second to account for quick multiple calls)
     const now = new Date()
     const recentDuplicate = results.some((result) => {
       const resultDate = new Date(result.date)
-      return (
-        result.examId === examId && Math.abs(now - resultDate) < 1000 // 1 second threshold
-      )
+      return result.examId === examId && Math.abs(now - resultDate) < 1000
     })
 
     if (!recentDuplicate) {
@@ -41,7 +37,6 @@ export const saveExamResult = (examId, examTitle, score) => {
     }
   } catch (error) {
     console.error('Failed to save exam result:', error)
-    // If all else fails, just store the new result
     localStorage.setItem('examResults', JSON.stringify([newResult]))
   }
 }

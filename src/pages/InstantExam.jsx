@@ -1,6 +1,7 @@
 import { CheckCircle2, XCircle } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import ExamTimer from '../components/ExamTimer'
 import allExams from '../data/examIndex'
 
 import { saveExamResult } from '../utils/examStorage' // Add this import
@@ -15,6 +16,8 @@ export default function InstantExam() {
   const [showResults, setShowResults] = useState(false)
   const [examCompleted, setExamCompleted] = useState(false)
   const [hasAnswered, setHasAnswered] = useState(false)
+  const [timeTaken, setTimeTaken] = useState(0)
+
   const questionRef = useRef(null)
 
   useEffect(() => {
@@ -85,7 +88,9 @@ export default function InstantExam() {
         total: exam.questions.length,
         percentage,
         passed,
+        timeTaken, // ← Add this
       })
+
       setUserAnswers((prev) => ({ ...prev, __resultSaved: true }))
     }
 
@@ -156,6 +161,10 @@ export default function InstantExam() {
                   <div className="text-sm text-gray-500">Incorrect Answers</div>
                 </div>
               </div>
+              <div className="text-sm text-gray-500 mt-2">
+                Time Taken: {Math.floor(timeTaken / 60)}m {timeTaken % 60}s
+              </div>
+
               <div className="mt-4 pt-4 border-t border-gray-200 text-center">
                 <div className="text-sm font-medium text-gray-500">
                   Passing Score
@@ -202,6 +211,11 @@ export default function InstantExam() {
         <h1 className="text-xl font-bold text-[#2c3e50]">
           {exam.title} - Instant Feedback
         </h1>
+        <ExamTimer
+          duration={120}
+          onTimeUp={() => setExamCompleted(true)}
+          onTick={(elapsed) => setTimeTaken(elapsed)}
+        />
       </div>
 
       <div className="mb-6">

@@ -1,6 +1,7 @@
 import { CheckCircle2, X, XCircle } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import ExamTimer from '../components/ExamTimer'
 import allExams from '../data/examIndex'
 import { saveExamResult } from '../utils/examStorage'
 
@@ -12,7 +13,9 @@ export default function ReviewExam() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [userAnswers, setUserAnswers] = useState({})
   const [examCompleted, setExamCompleted] = useState(false)
-  const [isReviewOpen, setIsReviewOpen] = useState(false) // New state for review visibility
+  const [isReviewOpen, setIsReviewOpen] = useState(false)
+  const [timeTaken, setTimeTaken] = useState(0)
+
   const questionRef = useRef(null)
 
   // Scroll to question when it changes
@@ -28,6 +31,7 @@ export default function ReviewExam() {
         total: score.total,
         percentage: score.percentage,
         passed: score.percentage >= 50,
+        timeTaken,
       })
     }
   }, [examCompleted, examId, exam?.title])
@@ -159,6 +163,9 @@ export default function ReviewExam() {
                   </div>
                   <div className="text-sm text-gray-500">Incorrect Answers</div>
                 </div>
+              </div>
+              <div className="text-sm text-gray-500 mt-2">
+                Time Taken: {Math.floor(timeTaken / 60)}m {timeTaken % 60}s
               </div>
             </div>
 
@@ -320,9 +327,11 @@ export default function ReviewExam() {
             <span className="text-sm bg-gray-100 px-3 py-1 rounded">
               Question {currentQuestionIndex + 1} of {exam.questions.length}
             </span>
-            {/* <span className="text-sm bg-blue-100 px-3 py-1 rounded">
-              Answered: {answeredCount}/{exam.questions.length}
-            </span> */}
+            <ExamTimer
+              duration={120}
+              onTimeUp={() => setExamCompleted(true)}
+              onTick={(elapsed) => setTimeTaken(elapsed)}
+            />
           </div>
         </div>
 
