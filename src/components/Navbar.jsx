@@ -78,8 +78,9 @@ export default function Navbar() {
             </a>
 
             <a
-              href="/SoftExit.apk"
-              download
+              href="https://play.google.com/store/apps/details?id=com.firuol.softexit"
+              target="_blank"
+              rel="noopener noreferrer"
               className="ml-4 flex items-center justify-center bg-white text-[#B80C09] font-semibold px-4 py-2 rounded-lg shadow hover:bg-gray-100 transition-all duration-200"
             >
               <Download className="inline-block mr-2" size={16} />
