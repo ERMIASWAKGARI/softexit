@@ -155,8 +155,9 @@ export default function Navbar() {
             <span>About</span>
           </a>
           <a
-            href="/SoftExit.apk"
-            download
+            href="https://play.google.com/store/apps/details?id=com.firuol.softexit"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setIsMenuOpen(false)}
             className="flex items-center justify-center bg-white text-[#B80C09] font-semibold px-4 py-2 rounded-md shadow"
           >
